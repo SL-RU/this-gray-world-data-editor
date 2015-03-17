@@ -1,4 +1,4 @@
-# this-gray-world-data-editor
+# This Gray World data editor
 
 Programm for creating and editing content(dialogs, characters, missions and etc.) in game based on Unity3D for project This Gray World
 
