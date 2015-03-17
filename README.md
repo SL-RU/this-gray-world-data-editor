@@ -9,4 +9,4 @@ Tabun: http://tabun.everypony.ru/blog/equgames/
 VK: http://vk.com/equgames
 
 
-Programm structure is [in document App's structure.txt](https://bitbucket.org/SL_RU/this-gray-world-data-editor/src/7ea1aa2a3b1a5415144fa651bfeedfba21745318/tgwEditor/App's%20structure.txt)
+Programm structure is [in document App's structure.txt](https://github.com/SL-RU/this-gray-world-data-editor/blob/master/tgwEditor/App%27s%20structure.txt)
