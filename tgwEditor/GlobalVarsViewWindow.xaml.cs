@@ -19,21 +19,13 @@ namespace tgwEditor
     /// <summary>
     /// Логика взаимодействия для ScriptsViewWindow.xaml
     /// </summary>
-    public partial class TextViewWindow : UserControl
+    public partial class GlobalVarsViewWindow : UserControl, ILoadableWindow
     {
-        public TextViewWindow()
+        public GlobalVarsViewWindow()
         {
             InitializeComponent();
-            scriptsList.ItemsSource = sData.texts.Collection;
 
-            //Topmost = true;
-
-            foreach (TextData d in sData.texts.Collection)
-            {
-                d.PropertyChanged+= d_TextChanged_Event; 
-            }
-
-            //sData.texts.Collection.CollectionChanged += texts_CollectionChanged;
+            vars.SetCollection(sData.global.Collection, "text,link,number,string,good");
         }
 
 
@@ -47,12 +39,9 @@ namespace tgwEditor
         {
             if (findF.Text != "")
             {
-                List<TextData> f = sData.texts.Collection.Where(x => x.Text.Contains(findF.Text) || x.ID.ToString().Contains(findF.Text)).ToList();
-                scriptsList.ItemsSource = f;
             }
             else
             {
-                scriptsList.ItemsSource = sData.texts.Collection;
             }
         }
 
@@ -63,8 +52,8 @@ namespace tgwEditor
         public static LayoutAnchorable CreateWindow()
         {
             LayoutAnchorable l = new LayoutAnchorable();
-            l.Title = "Texts";
-            var v = new TextViewWindow();
+            l.Title = "Global";
+            var v = new GlobalVarsViewWindow();
             l.Content = v;
 
             l.AutoHideMinWidth = l.FloatingWidth = v.MinWidth;
@@ -75,6 +64,16 @@ namespace tgwEditor
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             findF.Focus();
+        }
+
+        public void Loading()
+        {
+            vars.SetCollection(sData.global.Collection, "text,link,number,string,good");
+        }
+
+        public void Saving()
+        {
+            
         }
     }
 }

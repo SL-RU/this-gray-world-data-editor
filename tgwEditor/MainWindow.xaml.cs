@@ -53,6 +53,7 @@ namespace tgwEditor
             openWindowInPanel(TextViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(ScriptsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(DialogOriginsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
+            openWindowInPanel(GlobalVarsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
 
             openWindowInPanel(CharactersViewWindow.CreateWindow(), MainWindowPanelType.Right, true);
             openWindowInPanel(ScriptsHelpWindow.CreateWindow(), MainWindowPanelType.Right, true);

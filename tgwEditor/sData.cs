@@ -36,6 +36,7 @@ namespace tgwEditor
         public static XmlDBController<GoodsData> goods;
         public static XmlDBController<QuestData> quests;
         public static XmlDBController<CharacterData> characters;
+        public static XmlDBController<KeyValDataPair> global;
 
 
         public static string ScriptsFilePath = "scr.xml",
@@ -43,7 +44,8 @@ namespace tgwEditor
             CharacterFilePath = "char.xml",
             QuestsFilePath = "quests.xml",
             GoodsFilePath = "goods.xml",
-            DialogOriginsPath = "dia.xml";
+            DialogOriginsPath = "dia.xml",
+            GlobalFilePath = "global.xml";
 
         public static string path
         {
@@ -71,7 +73,7 @@ namespace tgwEditor
             goods = new XmlDBController<GoodsData>(GoodsFilePath, GoodsData.XElementName);
             quests = new XmlDBController<QuestData>(QuestsFilePath, QuestData.XElementName);
             characters = new XmlDBController<CharacterData>(CharacterFilePath, CharacterData.XElementName);
-
+            global = new XmlDBController<KeyValDataPair>(GlobalFilePath, KeyValDataPair.XElementName);
 
             DispatcherTimer autoSaveTimer = new DispatcherTimer();
             autoSaveTimer.Interval = TimeSpan.FromMinutes(1);
@@ -163,6 +165,7 @@ namespace tgwEditor
                 characters.Save();
                 quests.Save();
                 goods.Save();
+                global.Save();
 
                 if (MainWindow.instance != null)
                 {
@@ -193,6 +196,8 @@ namespace tgwEditor
             quests.Load();
 
             goods.Load();
+
+            global.Load();
 
             if (MainWindow.instance != null)
             {
