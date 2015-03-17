@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="tgwEditor.Goods.GoodsEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
+             mc:Ignorable="d" 
+             xmlns:loc ="clr-namespace:tgwEditor.Elements"
+             d:DesignHeight="193" d:DesignWidth="300">
+    <Grid>
+        <TextBox Text="{Binding ID}" Height="23" Margin="83,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="217"/>
+        <Label Content="ID: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="78"/>
+        <loc:VarsControl x:Name="vars" Margin="0,29,0,0"/>
+    </Grid>
+</UserControl>

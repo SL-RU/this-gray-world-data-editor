@@ -1,0 +1,44 @@
+﻿MainWindow - главное окно приложения
+sData - класс, предоставляющий доступ и обеспечивающий работу со всей информацией в базах данных.
+
+TextViewWindow - окно, отобрабражающее все существующие тектовые поля
+ScriptViewWindow - окно, отобрабражающее все существующие скрипты
+DialogOriginsViewWindow - окно, отобрабражающее все существующие начала диалогов
+
+scripts/
+	ScriptsHelpWindow - окно быстрой справки по скриптам
+	ScriptsMethodsList - элемент ScriptsHelpWindow
+
+Quests/
+	QuestsEditor - окно редактора квестов
+	QuestDialogDistributeItem - ячейка ответа для распеределения в системе диалогов персонажа.
+	QuestsViewWindow - окно, отобрабражающее все существующие квесты
+
+Elements/
+	AnswerDataField - элемент ответа
+	InputBoxWindow - окно ввода
+	KeyIntDataField - элемент ключ-значение для типа Int
+	KeyStringDataField - элемент ключ-значение для типа String
+	KeyTextDataField - элемент ключ-значение для текстовых полей
+	LuaEditor - редактор Lua скриптов
+	ScriptLinkField - элемент ключ-ссылка(исходный элемент) на скрипт
+	SourceElement - ссылка, исходный элемент
+	TargetElement - ссылка, конечный элемент
+	TextDataField - поле ввода текста
+
+DiaEditor/
+	DiaItem - элемент этапа диалога
+	DialogOrigin - элемент начала диалога
+	GraphDiaEdit - главное окно редактора диалогов
+	NoteItem - элемент заметки/комментария
+	ProjectsViewWindow - окно просмотра и контроля проектов.
+
+CharEditor/
+	CharacterEditor - окно редактора персонажей
+	CharactersViewWindow - окно, отобрабражающее всех существующих персонажей
+	CharacterDataInfoView - окно быстроко просмотра персонажа
+	CharacterAppearnceElement - элемент редактора внешнего вида пеерсонажа
+	behEditor/ - каталог редактора поведения
+		BehaviorEditor - элемент редактора поведения
+		BehaviorStateField - элемент состояния поведения персонажа
+		LuaBehEditor - элемент редактора скрипта элемента состояния персонажа в данной локации

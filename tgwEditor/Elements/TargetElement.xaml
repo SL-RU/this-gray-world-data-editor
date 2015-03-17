@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="tgwEditor.DiaEditor.TargetElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Button Style="{DynamicResource FlatButton}" x:Name="mainEl" Background="#23C9C900" MouseMove="mainEl_MouseMove" MouseLeave="mainEl_MouseLeave" MouseEnter="mainEl_MouseEnter" Click="mainEl_Click"/>
+
+    </Grid>
+</UserControl>

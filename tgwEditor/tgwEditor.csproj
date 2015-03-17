@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props" Condition="Exists('..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2A530DA-F01A-4BC6-8198-9C55112611CD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>tgwEditor</RootNamespace>
+    <AssemblyName>tgwEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>12.0.50716.0</ExpressionBlendVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>6f10a2fe</NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonDock.Themes.VS2012, Version=2.0.1771.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AvalonDock.Themes.VS2012.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\packages\AvalonEdit.4.4.2.9744\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.14.0.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Controls" />
+    <Reference Include="Microsoft.Expression.Drawing" />
+    <Reference Include="Microsoft.Expression.Interactions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.14.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AvalonDock.2.0.2000\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="CharEditor\behEditor\BehaviorEditor.xaml.cs">
+      <DependentUpon>BehaviorEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharEditor\behEditor\BehaviorStateField.xaml.cs">
+      <DependentUpon>BehaviorStateField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharEditor\behEditor\LuaBehEditor.xaml.cs">
+      <DependentUpon>LuaBehEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharEditor\CharacterAppearnceElement.xaml.cs">
+      <DependentUpon>CharacterAppearnceElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharEditor\CharacterEditor.xaml.cs">
+      <DependentUpon>CharacterEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharEditor\CharactersViewWindow.xaml.cs">
+      <DependentUpon>CharactersViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharEditor\CharacterData.cs" />
+    <Compile Include="DiaEditor\DiaProjectElement.cs" />
+    <Compile Include="DiaEditor\Elements\MetronomeElement.xaml.cs">
+      <DependentUpon>MetronomeElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiaEditor\Elements\NoteItem.xaml.cs">
+      <DependentUpon>NoteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiaEditor\Elements\DialogOrigin.xaml.cs">
+      <DependentUpon>DialogOrigin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiaEditor\ProjectsViewWindow.xaml.cs">
+      <DependentUpon>ProjectsViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\AnswerDataField.xaml.cs">
+      <DependentUpon>AnswerDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\DialogDistributionEditor.xaml.cs">
+      <DependentUpon>DialogDistributionEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\InputBoxWindow.xaml.cs">
+      <DependentUpon>InputBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\KeyGoodDataField.xaml.cs">
+      <DependentUpon>KeyGoodDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\KeyIntDataField.xaml.cs">
+      <DependentUpon>KeyIntDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\KeyStringDataField.xaml.cs">
+      <DependentUpon>KeyStringDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\KeyTextDataField.xaml.cs">
+      <DependentUpon>KeyTextDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\TextDataField.xaml.cs">
+      <DependentUpon>TextDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\LuaEditor.xaml.cs">
+      <DependentUpon>LuaEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\ScriptLinkField.xaml.cs">
+      <DependentUpon>ScriptLinkField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\VarsControl.xaml.cs">
+      <DependentUpon>VarsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goods\GoodsEditor.xaml.cs">
+      <DependentUpon>GoodsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goods\GoodsViewWindow.xaml.cs">
+      <DependentUpon>GoodsViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goods\GoodsData.cs" />
+    <Compile Include="Quests\QuestDialogDialogTextCell.xaml.cs">
+      <DependentUpon>QuestDialogDialogTextCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Quests\QuestsEditor.xaml.cs">
+      <DependentUpon>QuestsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Quests\QuestData.cs" />
+    <Compile Include="Quests\QuestsViewWindow.xaml.cs">
+      <DependentUpon>QuestsViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptsViewWindow.xaml.cs">
+      <DependentUpon>ScriptsViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="scripts\ScriptsHelpWindow.xaml.cs">
+      <DependentUpon>ScriptsHelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="scripts\ScriptsMethodsList.xaml.cs">
+      <DependentUpon>ScriptsMethodsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalVarsViewWindow.xaml.cs">
+      <DependentUpon>GlobalVarsViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextViewWindow.xaml.cs">
+      <DependentUpon>TextViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogOriginsViewWindow.xaml.cs">
+      <DependentUpon>DialogOriginsViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="sData.cs" />
+    <Page Include="CharEditor\behEditor\BehaviorEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharEditor\behEditor\BehaviorStateField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharEditor\behEditor\LuaBehEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CharEditor\CharacterAppearnceElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharEditor\CharacterEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharEditor\CharactersViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiaEditor\Elements\MetronomeElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DiaEditor\Elements\NoteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DiaEditor\Elements\DiaItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiaEditor\Elements\DialogOrigin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiaEditor\GraphDiaEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiaEditor\ProjectsViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Elements\AnswerDataField.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Elements\DialogDistributionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\InputBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\KeyGoodDataField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\KeyIntDataField.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Elements\KeyStringDataField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\KeyTextDataField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\TextDataField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\LuaEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\ScriptLinkField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\SourceElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\TargetElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\VarsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Goods\GoodsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Goods\GoodsViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DiaEditor\Elements\DiaItem.xaml.cs">
+      <DependentUpon>DiaItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DiaEditor\GraphDiaEdit.xaml.cs">
+      <DependentUpon>GraphDiaEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\SourceElement.xaml.cs">
+      <DependentUpon>SourceElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\TargetElement.xaml.cs">
+      <DependentUpon>TargetElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Quests\QuestDialogDialogTextCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Quests\QuestsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Quests\QuestsViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScriptsViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="scripts\ScriptsHelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="scripts\ScriptsMethodsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GlobalVarsViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TextViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DialogOriginsViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sData Info.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+    <Resource Include="img\carbon1.bmp" />
+    <Resource Include="img\carbon2.bmp" />
+    <Resource Include="img\carbon3.bmp" />
+    <Resource Include="img\carbon4.bmp" />
+    <Resource Include="img\carbon5.bmp" />
+    <Resource Include="img\carbon6.bmp" />
+    <Resource Include="img\carbon7.png" />
+    <Resource Include="img\carbon8.png" />
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="App%27s structure.txt" />
+    <Content Include="AvalonDock.Themes.VS2012.dll" />
+    <Resource Include="img\cell_dark.png" />
+    <Resource Include="img\magnifyingglass6.png" />
+    <Resource Include="charTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\LuaHighLighting.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 с пакетом обновления 1 %28SP1%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibGit2Sharp.0.21.0.176\build\net40\LibGit2Sharp.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="tgwEditor.Elements.KeyGoodDataField"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:ewt="http://schemas.xceed.com/wpf/xaml/toolkit"
+             d:DesignHeight="29.167" d:DesignWidth="300" Height="Auto">
+    <Grid x:Name="mainGrid" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="key" Grid.Column="0" Text="{Binding Key}" Margin="0,0,5,0" />
+        <ewt:DropDownButton x:Name="selButton" Grid.Column="1" Height="29" Background="Black" VerticalContentAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch">
+            <ewt:DropDownButton.Content>
+                <Label x:Name="lbl" Content="{Binding Val}" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </ewt:DropDownButton.Content>
+            <ewt:DropDownButton.DropDownContent>
+                <Grid Width="341" Height="503">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="searchTextBox" VerticalAlignment="Top" />
+                    <ListBox x:Name="searchList" Margin="0,3,0,0" Grid.Row="1" MouseDoubleClick="searchList_MouseDoubleClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label Content="{Binding ID}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </ewt:DropDownButton.DropDownContent>
+        </ewt:DropDownButton>
+    </Grid>
+</UserControl>

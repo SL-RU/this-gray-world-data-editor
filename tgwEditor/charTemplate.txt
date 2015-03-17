@@ -1,0 +1,28 @@
+﻿[special]
+strength
+perception
+endurance
+charisma
+intelligence
+agility
+luck
+[app]
+=pony
+-mane
+twi 2
+rd 0
+fl 1
+aj 1
+lyra 2
+-tale
+twi 2
+rd 0
+fl 1
+aj 1
+lyra 2
+-body
+male 1
+female 1
+=dragon
+-body
+spike 0

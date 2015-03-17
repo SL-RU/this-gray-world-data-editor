@@ -1,0 +1,66 @@
+﻿<metro:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"       
+        xmlns:w="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
+        xmlns:Custom="http://avalondock.codeplex.com" x:Class="tgwEditor.MainWindow"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="TGW editor" Height="600" Width="905" Closing="Window_Closing">
+    <Grid>
+        <ad:DockingManager x:Name="manager" Margin="0,30,0,0">
+
+            <ad:DockingManager.Theme>
+                <Custom:VS2012DarkTheme/>
+            </ad:DockingManager.Theme>
+
+            <ad:LayoutRoot  x:Name="root">
+                <ad:LayoutRoot.BottomSide>
+                    <ad:LayoutAnchorSide>
+                        <ad:LayoutAnchorGroup>
+                            <ad:LayoutAnchorable Title="Log window">
+                                <ListBox x:Name="LogList" />
+                            </ad:LayoutAnchorable>
+                        </ad:LayoutAnchorGroup>
+                    </ad:LayoutAnchorSide>
+                </ad:LayoutRoot.BottomSide>
+                <ad:LayoutPanel>
+
+                    <ad:LayoutAnchorablePane x:Name="Left" DockWidth="200" DockMinWidth="200"/>
+
+                    <ad:LayoutDocumentPane x:Name="Documents" DockMinWidth="118" DockWidth="200">
+                        <ad:LayoutAnchorable Title="Hello window" CanClose="False" CanFloat="False" CanHide="True" >
+                            <Grid Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" Margin="0,0,0,-2">
+                                <Label Content="Team: EquGames&#xA;&#xA;Author: SL_RU&#xA;e-mail: sl_ru@live.com&#xA;vk: http://vk.com/sl_ru_dev&#xA;&#xA;&#xA;Specially for project This Gray World&#xA;&#xA;&#xA;Set DATA folder in file props.inf" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
+                            </Grid>
+                        </ad:LayoutAnchorable>
+                    </ad:LayoutDocumentPane>
+                    <ad:LayoutAnchorablePane x:Name="SecondaryRight" DockMinWidth="250" DockWidth="300">
+
+                    </ad:LayoutAnchorablePane>
+                    <ad:LayoutAnchorablePane x:Name="Right" DockWidth="250" DockMinWidth="250"/>
+
+                </ad:LayoutPanel>
+            </ad:LayoutRoot>
+        </ad:DockingManager>
+        <Grid VerticalAlignment="Top" Height="30" Background="Black">
+            <Menu VerticalAlignment="Top" Margin="0,0,-25,0" HorizontalAlignment="Left" >
+                <MenuItem Header="File">
+                    <MenuItem x:Name="newPrj" Header="New prj" Click="newPrj_Click"/>
+
+                </MenuItem>
+                <MenuItem Header="Data">
+                    <MenuItem x:Name="LoadAllData" Header="Load All Data" Click="LoadAllData_Click"/>
+                    <MenuItem x:Name="SaveAllData" Header="Save All Data" Click="SaveAllData_Click"/>
+                    <MenuItem x:Name="SetDataPath" Header="Set DATA path" Click="SetDataPath_Click"/>
+                    <MenuItem x:Name="OpenProjectFolderInExplorer" Header="OpenProjectFolderInExplorer" Click="OpenProjectFolderInExplorer_Click"/>
+
+                </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="Open character editor window" Click="OpenCharEditorWindow"/>
+                </MenuItem>
+            </Menu>
+            <metro:ProgressRing x:Name="logProcessingBar" Height="30" Width="30" HorizontalAlignment="Right"/>
+            <TextBlock x:Name="logPreviewBox" HorizontalAlignment="Right" Margin="0,0,35,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" FontSize="18"/>
+        </Grid>
+    </Grid>
+</metro:MetroWindow>

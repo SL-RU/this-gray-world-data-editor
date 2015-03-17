@@ -1,0 +1,45 @@
+﻿<UserControl
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock" 
+        xmlns:l="clr-namespace:tgwEditor.CharEditor"
+        xmlns:tgwEditor="clr-namespace:tgwEditor"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="tgwEditor.CharEditor.CharactersViewWindow"
+        d:DesignWidth="285" d:DesignHeight="339" MinWidth="250"
+>
+    <UserControl.Resources>
+        <tgwEditor:TextKeyValuePairToTextConverter x:Key="ketValToTextConverter"/>
+    </UserControl.Resources>
+    <Grid Background="#FF8EEE89">
+        <DataGrid x:Name="lst" Margin="0,64,0,0" MouseDoubleClick="lst_MouseDoubleClick" HorizontalContentAlignment="Stretch" Background="#57000000" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="ID">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ID, Mode=OneWay}" Padding="10,0,0,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RealName, Converter={StaticResource ketValToTextConverter}}" Margin="10,0,0,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type, Mode=OneWay}" Padding="10,0,0,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="findF" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="14" TextChanged="TextBox_TextChanged" Background="#AAFFFFFF"/>
+        <Button x:Name="add" Content="Add new" Margin="0,35,0,0" VerticalAlignment="Top" Click="add_Click" HorizontalAlignment="Left" Width="100"/>
+        <Button Content="Delete" Margin="0,35,0,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="100"/>
+
+    </Grid>
+</UserControl>
