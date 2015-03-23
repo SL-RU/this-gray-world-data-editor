@@ -73,6 +73,7 @@ namespace tgwEditor.CharEditor
                 kn.ItemsSource = source.kn;
                 behEditor.setChar(source);
 
+                inventoryEditor.SetCollection(cd.inventory);
 
                 if (LaWindow != null)
                 {
@@ -102,7 +103,7 @@ namespace tgwEditor.CharEditor
         {
             if (CharacterData.CheckAvailibility(idField.Text, source) && !idField.Text.Contains(' ') && !idField.Text.Contains('\'') && !idField.Text.Contains('\"'))
             {
-                idField.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                idField.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             }
             else
             {

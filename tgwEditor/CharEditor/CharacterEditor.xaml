@@ -10,112 +10,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         mc:Ignorable="d" 
         x:Class="tgwEditor.CharEditor.CharacterEditor"
-        d:DesignHeight="820" MinWidth="575"
+        d:DesignHeight="1028.5" MinWidth="575"
     >
-    <Grid x:Name="MainLayout" Background="#FF555555" MouseEnter="Window_MouseEnter" Margin="0,0,0,-104">
+    <Grid x:Name="MainLayout" Background="#FF555555" MouseEnter="Window_MouseEnter" Margin="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="116"/>
-            <RowDefinition Height="6"/>
-            <RowDefinition Height="Auto" MinHeight="169"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="ID: " HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="26" Width="27"/>
-        <TextBox x:Name="idField" Height="26" Margin="64,0,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" TextChanged="TextBox_TextChanged" LostFocus="idField_LostFocus"/>
-        <Label Content="Type:" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="38"/>
-        <ComboBox x:Name="typeF" Margin="64,28,0,0" VerticalAlignment="Top" SelectedValue="{Binding Type}" SelectionChanged="ComboBox_SelectionChanged" Height="26"/>
-        <Label Content="RealName:" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="67"/>
-        <TextBox x:Name="realNameText" HorizontalAlignment="Left" Margin="64,57,0,0" TextWrapping="Wrap" Text="{Binding Text}" VerticalAlignment="Top" Width="378" Height="26"/>
-        <Label Content="Behavior" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Height="26" Foreground="White" Width="56"/>
-        <Grid Grid.Row="2" Margin="0,33,0,0" MinHeight="136">
-            <l:BehaviorEditor x:Name="behEditor" />
+        <Grid>
+            <Label Content="ID: " HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="26" Width="27"/>
+            <TextBox x:Name="idField" Height="26" Margin="64,0,0,0" TextWrapping="Wrap" Text="{Binding ID}" VerticalAlignment="Top" TextChanged="TextBox_TextChanged" LostFocus="idField_LostFocus" Foreground="White"/>
+            <Label Content="Type:" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="38"/>
+            <ComboBox x:Name="typeF" Margin="64,28,0,0" VerticalAlignment="Top" SelectedValue="{Binding Type}" SelectionChanged="ComboBox_SelectionChanged" Height="26"/>
+            <Label Content="RealName:" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="67"/>
+            <TextBox x:Name="realNameText" Margin="64,57,0,0" TextWrapping="Wrap" Text="{Binding Text}" VerticalAlignment="Top" Height="26" HorizontalContentAlignment="Stretch"/>
+            <Label Content="Instantiate:" HorizontalAlignment="Left" Margin="0,86,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="67"/>
+            <CheckBox IsChecked="{Binding Instantiate}" Content="" HorizontalAlignment="Left" Margin="64,78,0,0" VerticalAlignment="Top" Height="24" Width="23" BorderThickness="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" RenderTransformOrigin="0.5,0.5">
+                <CheckBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.3"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="9.837"/>
+                    </TransformGroup>
+                </CheckBox.RenderTransform>
+            </CheckBox>
         </Grid>
-        <GridSplitter HorizontalAlignment="Stretch" ResizeDirection="Rows" Grid.Row="2" Height="10" VerticalAlignment="Bottom" ResizeBehavior="CurrentAndNext">
-            <GridSplitter.Background>
-                <ImageBrush ImageSource="/tgwEditor;component/img/carbon1.bmp" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,40,40"/>
-            </GridSplitter.Background>
-        </GridSplitter>
-        <Label Content="Knowledge" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Height="26" Foreground="White" Width="69"/>
-        <Grid Background="#FF232323" Margin="0,23,0,10" Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <DataGrid x:Name="kn" Background="#FF363636" Margin="0,13,0,0" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" SelectionMode="Extended" MinHeight="150" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Key" MinWidth="270" >
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Key, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Padding="10,0,0,0"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Value" CanUserResize="False" MinWidth="300">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="+" Margin="0,0,23,0" VerticalAlignment="Top" Height="13" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,-14,0,-10" UseLayoutRounding="True" Click="Button_Click"/>
-            <Button Content="-" Margin="23,0,0,0" VerticalAlignment="Top" Height="13" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,-14,0,-10" UseLayoutRounding="True" Click="del_Click" Grid.Column="1"/>
-        </Grid>
-        <GridSplitter HorizontalAlignment="Stretch" ResizeDirection="Rows" Grid.Row="3" Height="10" VerticalAlignment="Bottom" Margin="0">
-            <GridSplitter.Background>
-                <ImageBrush ImageSource="/tgwEditor;component/img/carbon1.bmp" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,40,40"/>
-            </GridSplitter.Background>
-        </GridSplitter>
-        <el:DialogDistributionEditor x:Name="dialogs" Grid.Row="4"/>
-        <Expander  Margin="0" Grid.Row="5" Padding="0" Background="#FF3FC380">
-            <Expander.Header>
-                <Label Content="SPECIAL and apperance"/>
-            </Expander.Header>
-            <Grid Background="#FF3FC380">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <Grid.RowDefinitions>
-
-                    <RowDefinition Height="Auto" MinHeight="164"/>
-                    <RowDefinition/>
-
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="SPECIAL" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Foreground="White" Width="53"/>
-                <Grid Background="#FFE5E5E5" Margin="0,22,0,0" MinWidth="73" MinHeight="142">
-                    <ListBox x:Name="spec" Background="#FF1E824C" HorizontalContentAlignment="Stretch" MinHeight="137" Margin="0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="7*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Key}" MinWidth="83" />
-                                    <xe:IntegerUpDown Value="{Binding Val}" Grid.Column="1"/>
-                                    <Slider IsSnapToTickEnabled="True" Minimum="1" Maximum="100" Value="{Binding Val}" Grid.Column="2" SmallChange="1" LargeChange="5" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-                <Label Content="Appearance" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Height="26" Foreground="White" Width="73"/>
-                <Grid Background="#FFE5E5E5" Margin="0,22,0,0" Grid.Row="1" MinHeight="124">
-                    <ListBox x:Name="appearance" Background="#FF1BA39C" HorizontalContentAlignment="Stretch"/>
-                </Grid>
-            </Grid>
-        </Expander>
-        <Label Content="Instantiate:" HorizontalAlignment="Left" Margin="0,86,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="67"/>
-        <CheckBox IsChecked="{Binding Instantiate}" Content="" HorizontalAlignment="Left" Margin="70,82,0,0" VerticalAlignment="Top" Height="24" Width="23" BorderThickness="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" RenderTransformOrigin="0.5,0.5">
-            <CheckBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="39.691"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="9.837"/>
-                </TransformGroup>
-            </CheckBox.RenderTransform>
-        </CheckBox>
+                <Expander Margin="0" Header="Behavior" BorderThickness="0">
+                    <l:BehaviorEditor x:Name="behEditor" />
+                </Expander>
+                <Expander Background="#FF232323" Margin="0" Grid.Row="1" Header="Knowledge">
+                    <Grid>
+                        <DataGrid x:Name="kn" Background="#FF363636" Margin="0,13,0,0" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" SelectionMode="Extended" MinHeight="150" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Key" MinWidth="270" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Key, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Padding="10,0,0,0"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Value" CanUserResize="False" MinWidth="300">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Content="+" Margin="0,0,23,0" VerticalAlignment="Top" Height="13" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,-14,0,-10" UseLayoutRounding="True" Click="Button_Click"/>
+                        <Button Content="-" Margin="23,0,0,0" VerticalAlignment="Top" Height="13" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,-14,0,-10" UseLayoutRounding="True" Click="del_Click" Grid.Column="1"/>
+                    </Grid>
+                </Expander>
+                <Expander Header="Dialogs" Grid.Row="2" Margin="0">
+                    <el:DialogDistributionEditor x:Name="dialogs" Grid.Row="4" MinWidth="0"/>
+                </Expander>
+                <Expander  Margin="0" Grid.Row="3" Padding="0" Background="#FF3FC380">
+                    <Expander.Header>
+                        <Label Content="SPECIAL and apperance"/>
+                    </Expander.Header>
+                    <Grid Background="#FF3FC380">
+                        <Grid.RowDefinitions>
 
+                            <RowDefinition Height="Auto" MinHeight="164"/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Label Content="SPECIAL" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Foreground="White" Width="53"/>
+                        <Grid Background="#FFE5E5E5" Margin="0,22,0,0" MinWidth="73" MinHeight="142">
+                            <ListBox x:Name="spec" Background="#FF1E824C" HorizontalContentAlignment="Stretch" MinHeight="137" Margin="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="7*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Key}" MinWidth="83" />
+                                            <xe:IntegerUpDown Value="{Binding Val}" Grid.Column="1"/>
+                                            <Slider IsSnapToTickEnabled="True" Minimum="1" Maximum="100" Value="{Binding Val}" Grid.Column="2" SmallChange="1" LargeChange="5" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                        <Label Content="Appearance" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Height="26" Foreground="White" Width="73"/>
+                        <Grid Background="#FFE5E5E5" Margin="0,22,0,0" Grid.Row="1" MinHeight="124">
+                            <ListBox x:Name="appearance" Background="#FF1BA39C" HorizontalContentAlignment="Stretch"/>
+                        </Grid>
+                    </Grid>
+                </Expander>
+                <Expander Grid.Row="4" Margin="0" Header="Inventory">
+                    <el:InventoryEditor x:Name="inventoryEditor" />
+                </Expander>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -487,7 +487,14 @@ namespace tgwEditor
         public string Key
         {
             get { return source.Attribute("key").Value.ToString(); }
-            set { source.Attribute("key").Value = value; }
+            set
+            {
+                source.Attribute("key").Value = value;
+                if (ValueChanged_Event != null)
+                {
+                    ValueChanged_Event(this, null);
+                }
+            }
         }
 
         public event EventHandler ValueChanged_Event;
@@ -546,11 +553,11 @@ namespace tgwEditor
                     break;
             }
             nl.Add(new XAttribute("valType", valType));
+            nl.Add(new XAttribute("ID", Guid.NewGuid().ToString()));
             KeyValDataPair li = new KeyValDataPair(nl);
             return li;
         }
     }
-
 
 
     // /////////////////////////////////////////////////////////////////////
@@ -621,9 +628,7 @@ namespace tgwEditor
         public static int lastID = -1;
         public static string getNewID()
         {
-
             return Guid.NewGuid().ToString();
-
         }
 
     }

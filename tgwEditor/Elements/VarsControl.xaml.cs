@@ -279,7 +279,7 @@ namespace tgwEditor.Elements
                 case "text": source.Add(KeyValDataPair.New("txt" + texts.Count, KeyValDataPair.VALUE_TYPE_TEXTID)); break;
                 case "number": source.Add(KeyValDataPair.New("n" + intVals.Count, KeyValDataPair.VALUE_TYPE_INT)); break;
                 case "string": source.Add(KeyValDataPair.New("s" + stringVals.Count, KeyValDataPair.VALUE_TYPE_STRING)); break;
-                case "good": source.Add(KeyValDataPair.New("good" + stringVals.Count, KeyValDataPair.VALUE_TYPE_GOOD_ID)); break;
+                case "good": source.Add(KeyValDataPair.New("good" + goods.Count, KeyValDataPair.VALUE_TYPE_GOOD_ID)); break;
             }
         }
     }

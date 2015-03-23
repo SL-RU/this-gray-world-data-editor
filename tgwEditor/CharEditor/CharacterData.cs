@@ -114,7 +114,7 @@ namespace tgwEditor
         public ObservableCollection<KeyValDataPair> spec, kn, appearance;
         public ObservableCollection<LocationBehaviorStateData> behStates;
         public ObservableCollection<DialogDistributionItemData> dialogs;
-
+        public ObservableCollection<KeyValDataPair> inventory;
 
         public CharacterData(XElement xe)
             : base(xe)
@@ -124,6 +124,7 @@ namespace tgwEditor
             spec = new ObservableCollection<KeyValDataPair>();
             kn = new ObservableCollection<KeyValDataPair>();
             appearance = new ObservableCollection<KeyValDataPair>();
+            inventory = new ObservableCollection<KeyValDataPair>();
             behStates = new ObservableCollection<LocationBehaviorStateData>();
             dialogs = new ObservableCollection<DialogDistributionItemData>();
 
@@ -139,6 +140,9 @@ namespace tgwEditor
                         break;
                     case KeyValDataPair.VALUE_TYPE_STRING:
                         kn.Add(new KeyValDataPair(kx));
+                        break;
+                    case "inv":
+                        inventory.Add(new KeyValDataPair(kx));
                         break;
                 }
             }
@@ -158,6 +162,27 @@ namespace tgwEditor
             spec.CollectionChanged += spec_CollectionChanged;
             behStates.CollectionChanged += behStates_CollectionChanged;
             dialogs.CollectionChanged += dialogs_CollectionChanged;
+            inventory.CollectionChanged += inventory_CollectionChanged;
+        }
+
+        void inventory_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (KeyValDataPair li in e.OldItems)
+                {
+                    //Removed items
+                    source.Elements().Where(x => x == li.source).Remove();
+                }
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (KeyValDataPair li in e.NewItems)
+                {
+                    //Added items
+                    source.AddFirst(li.source);
+                }
+            }
         }
 
         void dialogs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

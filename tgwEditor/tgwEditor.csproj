@@ -156,6 +156,9 @@
     <Compile Include="Elements\InputBoxWindow.xaml.cs">
       <DependentUpon>InputBoxWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Elements\GoodCountDataField.xaml.cs">
+      <DependentUpon>GoodCountDataField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Elements\KeyGoodDataField.xaml.cs">
       <DependentUpon>KeyGoodDataField.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,9 @@
     </Compile>
     <Compile Include="Elements\ScriptLinkField.xaml.cs">
       <DependentUpon>ScriptLinkField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\InventoryEditor.xaml.cs">
+      <DependentUpon>InventoryEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\VarsControl.xaml.cs">
       <DependentUpon>VarsControl.xaml</DependentUpon>
@@ -276,6 +282,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Elements\GoodCountDataField.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Elements\KeyGoodDataField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -311,6 +321,10 @@
     <Page Include="Elements\TargetElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\InventoryEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Elements\VarsControl.xaml">
       <SubType>Designer</SubType>
