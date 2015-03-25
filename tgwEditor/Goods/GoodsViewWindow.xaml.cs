@@ -27,6 +27,7 @@ namespace tgwEditor
             InitializeComponent();
             scriptsList.ItemsSource = sData.goods.Collection;
 
+            scriptsList.SelectionMode = SelectionMode.Extended;
             //Topmost = true;
         }
 
@@ -48,7 +49,7 @@ namespace tgwEditor
             }
             else
             {
-                scriptsList.ItemsSource = sData.texts.Collection;
+                scriptsList.ItemsSource = sData.goods.Collection;
             }
 
 
@@ -75,12 +76,24 @@ namespace tgwEditor
             var v = GoodsData.New();
             sData.goods.Add(v);
 
+            ///Template
+            v.vars.Add(KeyValDataPair.New("name", KeyValDataPair.VALUE_TYPE_TEXTID));
+            v.vars.Add(KeyValDataPair.New("description", KeyValDataPair.VALUE_TYPE_TEXTID));
+            v.vars.Add(KeyValDataPair.New("mass", KeyValDataPair.VALUE_TYPE_INT));
+            v.vars.Add(KeyValDataPair.New("icon", KeyValDataPair.VALUE_TYPE_STRING));
+            ///
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            if (scriptsList.SelectedItems.Count > 0)
+            {
+                for (int i = scriptsList.SelectedItems.Count - 1; i >= 0; i--)
+                {
+                    sData.goods.Collection.Remove(scriptsList.SelectedItems[i] as GoodsData);
+                }
+            }
         }
     }
 }

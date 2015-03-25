@@ -48,14 +48,5 @@ namespace tgwEditor.Goods
             }
         }
 
-
-        private void addPVal_Click(object sender, RoutedEventArgs e)
-        {
-            if (source != null)
-            {
-                source.vars.Add(KeyValDataPair.New("name", KeyValDataPair.VALUE_TYPE_STRING));
-            }
-        }
-
     }
 }

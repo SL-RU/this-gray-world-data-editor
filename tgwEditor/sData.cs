@@ -479,7 +479,8 @@ namespace tgwEditor
             VALUE_TYPE_TEXTID = "textID",
             VALUE_TYPE_SCRIPT_ID = "scriptID",
             VALUE_TYPE_GOOD_ID = "goodID";
-
+        //"inv" - for inventory
+        //"app" - for appearance 
 
         public object parent = null;
 
@@ -503,10 +504,13 @@ namespace tgwEditor
             get { return source.Attribute("val").Value.ToString(); }
             set
             {
-                source.Attribute("val").Value = value;
-                if (ValueChanged_Event != null)
+                if (value != null)
                 {
-                    ValueChanged_Event(this, null);
+                    source.Attribute("val").Value = value;
+                    if (ValueChanged_Event != null)
+                    {
+                        ValueChanged_Event(this, null);
+                    }
                 }
             }
         }
