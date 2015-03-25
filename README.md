@@ -10,3 +10,5 @@ VK: http://vk.com/equgames
 
 
 Programm structure is [in document App's structure.txt](https://github.com/SL-RU/this-gray-world-data-editor/blob/master/tgwEditor/App%27s%20structure.txt)
+
+Old repo: https://bitbucket.org/SL_RU/this-gray-world-data-editor
