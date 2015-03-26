@@ -97,10 +97,24 @@ namespace tgwEditor.Elements
                         {
                             foreach (var s in AppSettings.LuaAPIHelp["*"])
                             {
-                                if (lineText.Contains(":"))
-                                {
-                                    data.Add(new LuaCompletionData(s));
-                                }
+                                data.Add(new LuaCompletionData(s));
+                            }
+                        }
+                        //add class methods
+                        if (AppSettings.LuaAPIHelp.ContainsKey(":"))
+                        {
+                            foreach (var s in AppSettings.LuaAPIHelp[":"])
+                            {
+                                data.Add(new LuaCompletionData(s));
+                            }
+                        }
+
+                        //add class fields
+                        if (AppSettings.LuaAPIHelp.ContainsKey("."))
+                        {
+                            foreach (var s in AppSettings.LuaAPIHelp["."])
+                            {
+                                data.Add(new LuaCompletionData(s));
                             }
                         }
 
@@ -109,13 +123,9 @@ namespace tgwEditor.Elements
                         {
                             foreach (var s in AppSettings.LuaAPIHelp[ScriptType])
                             {
-                                if (lineText.Contains(":"))
-                                {
-                                    data.Add(new LuaCompletionData(s));
-                                }
+                                data.Add(new LuaCompletionData(s));
                             }
                         }
-
                         completionWindow.Show();
                         completionWindow.Closed += delegate
                         {

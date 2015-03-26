@@ -108,6 +108,23 @@ namespace tgwEditor
                 }
             }
         }
+
+        public static QuestData New()
+        {
+            XElement nl = new XElement(XElementName);
+            nl.Add(new XAttribute("ed.descr", ""));
+            nl.Add(new XAttribute("Qname", "EnterQuestID"));
+            nl.Add(new XAttribute("ID", Guid.NewGuid().ToString()));
+            KeyValDataPair name = KeyValDataPair.New("name", KeyValDataPair.VALUE_TYPE_TEXTID);
+            nl.Add(name.source);
+            KeyValDataPair kv = KeyValDataPair.New("script", KeyValDataPair.VALUE_TYPE_SCRIPT_ID);
+            nl.Add(kv.source);
+            ScriptData sd = ScriptData.New();
+            sData.scripts.Add(sd);
+            kv.Val = sd.ID.ToString();
+            QuestData li = new QuestData(nl);
+            return li;
+        }
     }
 
 
