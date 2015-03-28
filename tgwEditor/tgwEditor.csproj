@@ -134,6 +134,9 @@
       <DependentUpon>CharactersViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CharEditor\CharacterData.cs" />
+    <Compile Include="Content\ImagesViewWindow.xaml.cs">
+      <DependentUpon>ImagesViewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DiaEditor\DiaProjectElement.cs" />
     <Compile Include="DiaEditor\Elements\MetronomeElement.xaml.cs">
       <DependentUpon>MetronomeElement.xaml</DependentUpon>
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="Elements\GoodCountDataField.xaml.cs">
       <DependentUpon>GoodCountDataField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\KeyImageDataField.xaml.cs">
+      <DependentUpon>KeyImageDataField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\KeyGoodDataField.xaml.cs">
       <DependentUpon>KeyGoodDataField.xaml</DependentUpon>
@@ -246,6 +252,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Content\ImagesViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="DiaEditor\Elements\MetronomeElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -283,6 +293,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Elements\GoodCountDataField.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Elements\KeyImageDataField.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

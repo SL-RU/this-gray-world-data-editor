@@ -29,6 +29,7 @@ namespace tgwEditor.Elements
 
             TextDataField tf = new TextDataField(src);
             tf.SetValue(Grid.ColumnProperty, 1);
+            tf.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             main.Children.Add(tf);
             main.DataContext = src;
         }

@@ -12,7 +12,7 @@
         x:Class="tgwEditor.CharEditor.CharacterEditor"
         d:DesignHeight="1028.5" MinWidth="575"
     >
-    <Grid x:Name="MainLayout" Background="#FF555555" MouseEnter="Window_MouseEnter" Margin="0">
+    <Grid x:Name="MainLayout" Background="#FF252526" MouseEnter="Window_MouseEnter" Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -46,10 +46,10 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Expander Margin="0" Header="Behavior" BorderThickness="0">
-                    <l:BehaviorEditor x:Name="behEditor" />
+                    <l:BehaviorEditor x:Name="behEditor" Margin="-5" />
                 </Expander>
                 <Expander Background="#FF232323" Margin="0" Grid.Row="1" Header="Knowledge">
-                    <Grid>
+                    <Grid Margin="-5">
                         <DataGrid x:Name="kn" Background="#FF363636" Margin="0,13,0,0" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" SelectionMode="Extended" MinHeight="150" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Header="Key" MinWidth="270" >
@@ -73,7 +73,7 @@
                     </Grid>
                 </Expander>
                 <Expander Header="Dialogs" Grid.Row="2" Margin="0">
-                    <el:DialogDistributionEditor x:Name="dialogs" Grid.Row="4" MinWidth="0"/>
+                    <el:DialogDistributionEditor x:Name="dialogs" Grid.Row="4" MinWidth="0" Margin="-5"/>
                 </Expander>
                 <Expander  Margin="0" Grid.Row="3" Padding="0" Background="#FF3FC380">
                     <Expander.Header>
@@ -111,8 +111,8 @@
                         </Grid>
                     </Grid>
                 </Expander>
-                <Expander Grid.Row="4" Margin="0" Header="Inventory">
-                    <el:InventoryEditor x:Name="inventoryEditor" />
+                <Expander Grid.Row="4" Margin="0" Header="Inventory" Background="#FF20C9C9" BorderBrush="#FF22D2CA" BorderThickness="0">
+                    <el:InventoryEditor x:Name="inventoryEditor" Margin="-5" />
                 </Expander>
             </Grid>
         </ScrollViewer>

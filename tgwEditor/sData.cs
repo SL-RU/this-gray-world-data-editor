@@ -478,7 +478,8 @@ namespace tgwEditor
             VALUE_TYPE_STRING = "string",
             VALUE_TYPE_TEXTID = "textID",
             VALUE_TYPE_SCRIPT_ID = "scriptID",
-            VALUE_TYPE_GOOD_ID = "goodID";
+            VALUE_TYPE_GOOD_ID = "goodID",
+            VALUE_TYPE_IMAGE_PATH = "img";
         //"inv" - for inventory
         //"app" - for appearance 
 

@@ -79,8 +79,9 @@ namespace tgwEditor
             ///Template
             v.vars.Add(KeyValDataPair.New("name", KeyValDataPair.VALUE_TYPE_TEXTID));
             v.vars.Add(KeyValDataPair.New("description", KeyValDataPair.VALUE_TYPE_TEXTID));
+            v.vars.Add(KeyValDataPair.New("cost", KeyValDataPair.VALUE_TYPE_INT));
             v.vars.Add(KeyValDataPair.New("mass", KeyValDataPair.VALUE_TYPE_INT));
-            v.vars.Add(KeyValDataPair.New("icon", KeyValDataPair.VALUE_TYPE_STRING));
+            v.vars.Add(KeyValDataPair.New("icon", KeyValDataPair.VALUE_TYPE_IMAGE_PATH));
             ///
 
         }

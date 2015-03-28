@@ -30,6 +30,7 @@ namespace tgwEditor.Elements
         public List<ScriptLinkField> links;
         public List<KeyTextDataField> texts;
         public List<KeyGoodDataField> goods;
+        public List<KeyImageDataField> images;
         // СДЕЛАТЬ НОРМАЛЬНОЕ НАСЛЕДОВАНИЕ! БЫДЛОКОДЕР!
 
         public VarsControl()
@@ -41,6 +42,7 @@ namespace tgwEditor.Elements
             links = new List<ScriptLinkField>();
             texts = new List<KeyTextDataField>();
             goods = new List<KeyGoodDataField>();
+            images = new List<KeyImageDataField>();
         }
 
 
@@ -52,6 +54,8 @@ namespace tgwEditor.Elements
             List<KeyIntDataField> kid = new List<KeyIntDataField>();
             List<ScriptLinkField> slf = new List<ScriptLinkField>();
             List<KeyTextDataField> ktd = new List<KeyTextDataField>();
+            List<KeyImageDataField> kim = new List<KeyImageDataField>();
+
             //Find
             foreach (KeyStringDataField ks in stringVals)
             {
@@ -97,6 +101,17 @@ namespace tgwEditor.Elements
                     kvpl.Add(ks.source);
                 }
             }
+            foreach (KeyImageDataField ks in images)
+            {
+                if (!source.Contains(ks.source) && ks.source.ValueType == KeyValDataPair.VALUE_TYPE_IMAGE_PATH)
+                {
+                    kim.Add(ks);
+                }
+                else
+                {
+                    kvpl.Add(ks.source);
+                }
+            }
 
             //Rem
             foreach (KeyStringDataField u in ksd)
@@ -119,6 +134,11 @@ namespace tgwEditor.Elements
                 varGrid.Children.Remove(u);
                 texts.Remove(u);
             }
+            foreach (KeyImageDataField u in kim)
+            {
+                varGrid.Children.Remove(u);
+                images.Remove(u);
+            }
 
             //Add
             foreach (KeyValDataPair kv in source)
@@ -134,8 +154,8 @@ namespace tgwEditor.Elements
         /// Sets an source collection for the element
         /// </summary>
         /// <param name="col">New collection</param>
-        /// <param name="types">Types of available varibles. Types: link, text, number, string, good.
-        /// Write it and separate with comma. Like this: "link,text,good"</param>
+        /// <param name="types">Types of available varibles. Types: link, text, number, string, good, image.
+        /// Write it and separate with comma. Like this: "link,text,good,image"</param>
         public void SetCollection(ObservableCollection<KeyValDataPair> col, string types)
         {
             newVarType.Items.Clear();
@@ -267,6 +287,26 @@ namespace tgwEditor.Elements
                     uGood.ContextMenu = m;
                     #endregion
                     break;
+                case KeyValDataPair.VALUE_TYPE_IMAGE_PATH:
+                    var uImg = new KeyImageDataField(kv);
+                    uImg.SetValue(DockPanel.DockProperty, Dock.Top);
+                    varGrid.Children.Add(uImg);
+                    images.Add(uImg);
+                    #region ContextMenu
+                    m = new ContextMenu();
+
+                    del = new MenuItem();
+                    del.Tag = uImg;
+                    del.Click += (x, y) =>
+                    {
+                        var k = (x as MenuItem).Tag as KeyGoodDataField;
+                        source.Remove(k.source);
+                    };
+                    del.Header = "Delete";
+                    m.Items.Add(del);
+                    uImg.ContextMenu = m;
+                    #endregion
+                    break;
             }
         }
 
@@ -280,7 +320,17 @@ namespace tgwEditor.Elements
                 case "number": source.Add(KeyValDataPair.New("n" + intVals.Count, KeyValDataPair.VALUE_TYPE_INT)); break;
                 case "string": source.Add(KeyValDataPair.New("s" + stringVals.Count, KeyValDataPair.VALUE_TYPE_STRING)); break;
                 case "good": source.Add(KeyValDataPair.New("good" + goods.Count, KeyValDataPair.VALUE_TYPE_GOOD_ID)); break;
+                case "image": source.Add(KeyValDataPair.New("image" + images.Count, KeyValDataPair.VALUE_TYPE_IMAGE_PATH)); break;
             }
+        }
+    }
+
+    public class AbstractDataField
+    {
+        public KeyValDataPair source
+        {
+            get;
+            set;
         }
     }
 }

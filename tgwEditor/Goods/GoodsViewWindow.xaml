@@ -11,12 +11,12 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://sc
         <RowDefinition Height="108*"/>
         <RowDefinition Height="73*"/>
     </Grid.RowDefinitions>
-    <Grid Background="#FF1CF5FF">
+    <Grid Background="#FF22D2CA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="scriptsList" Margin="0,55,0,0" HorizontalContentAlignment="Stretch" Background="#39131313" MouseDoubleClick="scriptsList_MouseDoubleClick" Grid.ColumnSpan="2">
+        <ListBox x:Name="scriptsList" Margin="0,64,0,0" HorizontalContentAlignment="Stretch" Background="#76000000" MouseDoubleClick="scriptsList_MouseDoubleClick" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid MinWidth="185">
@@ -31,10 +31,10 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://sc
             </ListBox.ItemTemplate>
 
         </ListBox>
-        <TextBox x:Name="findF" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="14" TextChanged="TextBox_TextChanged" Background="#72646464" Grid.ColumnSpan="2"/>
-        <Button Style="{DynamicResource SquareButtonStyle}" Content="+" Margin="0,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="Button_Click">
+        <TextBox x:Name="findF" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="14" TextChanged="TextBox_TextChanged" Background="#15646464" Grid.ColumnSpan="2" BorderThickness="0"/>
+        <Button  Content="+" Margin="0,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="Button_Click" Width="100" HorizontalAlignment="Left" Height="34">
         </Button>
-        <Button Style="{DynamicResource SquareButtonStyle}" Content="-" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="1" Click="Button_Click_1"/>
+        <Button  Content="-" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="1" Click="Button_Click_1" HorizontalAlignment="Right" Width="100" Height="34"/>
 
     </Grid>
     <GridSplitter HorizontalAlignment="Stretch" ResizeDirection="Rows" Height="10" Margin="0" Grid.Row="1" VerticalAlignment="Top">

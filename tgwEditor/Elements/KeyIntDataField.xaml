@@ -12,6 +12,6 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="key" Grid.Column="0" Text="{Binding Key}" Margin="0,0,10,0" />
-         <xctk:IntegerUpDown Grid.Column="1" Value="{Binding Val}" Margin="10,0,0,0" />
+         <xctk:IntegerUpDown Grid.Column="1" Value="{Binding Val}" Margin="10,0,0,0" Foreground="White" />
     </Grid>
 </UserControl>

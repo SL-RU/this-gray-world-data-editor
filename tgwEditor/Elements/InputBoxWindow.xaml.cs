@@ -36,6 +36,7 @@ namespace tgwEditor.Elements
             v.Show();
             v.lable.Content = description;
             v.Title = header;
+            v.text.Text = text;
             return v;
         }
         public static InputBoxWindow CreateNew(string description)

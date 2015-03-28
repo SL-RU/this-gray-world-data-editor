@@ -38,7 +38,7 @@ namespace tgwEditor.Goods
             DataContext = qd;
             source = qd;
 
-            vars.SetCollection(source.vars, "text,number,string,good");
+            vars.SetCollection(source.vars, "text,number,string,good,image");
 
             if (la != null)
             {

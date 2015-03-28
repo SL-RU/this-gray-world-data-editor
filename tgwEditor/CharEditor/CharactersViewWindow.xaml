@@ -12,7 +12,7 @@
         <tgwEditor:TextKeyValuePairToTextConverter x:Key="ketValToTextConverter"/>
     </UserControl.Resources>
     <Grid Background="#FF8EEE89">
-        <DataGrid x:Name="lst" Margin="0,64,0,0" MouseDoubleClick="lst_MouseDoubleClick" HorizontalContentAlignment="Stretch" Background="#57000000" AutoGenerateColumns="False">
+        <DataGrid x:Name="lst" Margin="0,64,0,0" MouseDoubleClick="lst_MouseDoubleClick" HorizontalContentAlignment="Stretch" Background="#1F000000" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="ID">
                     <DataGridTemplateColumn.CellTemplate>
@@ -37,9 +37,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="findF" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="14" TextChanged="TextBox_TextChanged" Background="#AAFFFFFF"/>
-        <Button x:Name="add" Content="Add new" Margin="0,35,0,0" VerticalAlignment="Top" Click="add_Click" HorizontalAlignment="Left" Width="100"/>
-        <Button Content="Delete" Margin="0,35,0,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="100"/>
+        <TextBox x:Name="findF" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="14" TextChanged="TextBox_TextChanged" Background="#AAFFFFFF" BorderThickness="0"/>
+        <Button x:Name="add" Content="Add new" Margin="0,31,0,0" VerticalAlignment="Top" Click="add_Click" HorizontalAlignment="Left" Width="100" Height="33"/>
+        <Button Content="Delete" Margin="0,31,0,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="100" Height="33"/>
 
     </Grid>
 </UserControl>

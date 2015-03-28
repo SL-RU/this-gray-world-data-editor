@@ -49,6 +49,7 @@ namespace tgwEditor
 
 
             #region Adding view windows
+            openWindowInPanel(ImagesViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(ProjectsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(TextViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(ScriptsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
