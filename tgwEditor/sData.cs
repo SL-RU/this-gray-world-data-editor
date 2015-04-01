@@ -611,6 +611,16 @@ namespace tgwEditor
             }
         }
 
+        public string Sound
+        {
+            get { return source.Attribute("sound").Value.ToString(); }
+            set
+            {
+                source.Attribute("sound").Value = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public TextData(XElement xe)
             : base(xe)
         {
@@ -626,6 +636,7 @@ namespace tgwEditor
             XElement nl = new XElement(XElementName);
             nl.Add(new XAttribute("ID", getNewID()));
             nl.Add(new XAttribute("text", text));
+            nl.Add(new XAttribute("sound", text));
             TextData li = new TextData(nl);
             return li;
         }

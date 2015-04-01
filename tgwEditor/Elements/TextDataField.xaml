@@ -6,29 +6,29 @@
              xmlns:av="http://icsharpcode.net/sharpdevelop/avalonedit"
 
              mc:Ignorable="d" 
-             d:DesignHeight="325" d:DesignWidth="484">
+             d:DesignHeight="158" d:DesignWidth="526">
 
+    <DockPanel>
+        <Grid x:Name="main" DockPanel.Dock="Top">
+            <av:TextEditor x:Name="textBox" Margin="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" FontSize="16" BorderThickness="0" WordWrap="True" LostFocus="textBox_LostFocus" Foreground="White"/>
+            <Button x:Name="moreSettingsButton" Content="more" Margin="0,-6,5,0" VerticalAlignment="Top" FontSize="14" FontWeight="Thin" FontFamily="Segoe UI Semibold" Height="25" BorderThickness="0" VerticalContentAlignment="Top" Padding="0" HorizontalContentAlignment="Right" Click="Button_Click" Style="{DynamicResource LinkButton}" Foreground="#7200FF75" Background="#FF323232" MouseMove="moreSettingsButton_MouseMove" MouseLeave="moreSettingsButton_MouseLeave" HorizontalAlignment="Right" />
+        </Grid>
 
-    <Grid x:Name="main">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="0*"/>
-        </Grid.RowDefinitions>
-        <av:TextEditor x:Name="textBox" Margin="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" FontSize="16" BorderThickness="0" WordWrap="True" LostFocus="textBox_LostFocus" Foreground="White"/>
-        <Button x:Name="moreSettingsButton" Content="more" Margin="0,-6,5,0" VerticalAlignment="Top" FontSize="14" FontWeight="Thin" FontFamily="Segoe UI Semibold" Height="25" BorderThickness="0" VerticalContentAlignment="Top" Padding="0" HorizontalContentAlignment="Right" Click="Button_Click" Style="{DynamicResource LinkButton}" Foreground="#7200FF75" Background="#FF323232" MouseMove="moreSettingsButton_MouseMove" MouseLeave="moreSettingsButton_MouseLeave" HorizontalAlignment="Right" />
-        <Grid x:Name="tools" Margin="5,0" Background="#FF00B352" VerticalAlignment="Top" Grid.Row="1" Height="0">
+        <Grid x:Name="tools" Margin="0" Background="#FF00B352" VerticalAlignment="Top" Grid.Row="1" DockPanel.Dock="Bottom" MaxHeight="109">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="newIDTextBox" Height="22" TextWrapping="Wrap" Text="-1" VerticalAlignment="Top" Margin="4,3,4,0" BorderThickness="2"/>
-            <Button Style="{DynamicResource SquareButtonStyle}" x:Name="set_text" Content="Set this text ID" Margin="4,4,4,0" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="set_text_Click"/>
-            <Button Style="{DynamicResource SquareButtonStyle}" x:Name="new_text" Content="New text" Margin="3,32,4,0" VerticalAlignment="Top" Click="new_text_Click"/>
+            <TextBox x:Name="SoundTextBox" Text="{Binding Sound}" Height="22" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="0" BorderThickness="0" Grid.ColumnSpan="2" Background="#FF0071CE"/>
+
+            <TextBox x:Name="newIDTextBox" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="0,26,0,0" BorderThickness="0"/>
+            <Button  x:Name="set_text" Content="Set this text ID" Margin="0,26,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="set_text_Click" BorderThickness="0" Padding="0,5"/>
+            <Button  x:Name="new_text" Content="New text" Margin="0,55,0,-26" VerticalAlignment="Top" Click="new_text_Click"/>
             <!--<Button x:Name="Last_free_id" Content="Last free text id" Margin="4,32,4,0" VerticalAlignment="Top" Grid.Column="1" d:IsHidden="True"/>-->
-            <Label x:Name="info" Content="" Margin="3,55,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <Label Content="{Binding ID}" VerticalAlignment="Top" Margin="25,29,4,0" VerticalContentAlignment="Center" Grid.Column="1" Foreground="White"/>
-            <Label Content="ID: " Grid.Column="1" HorizontalAlignment="Left" Margin="4,29,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock x:Name="idLable" Text="c5960c1f-6fdd-4ca3-a00e-83aebad77099" VerticalAlignment="Top" Margin="17,55,0,0" Grid.Column="1" Foreground="White" Height="29" TextWrapping="Wrap" TextAlignment="Center"/>
+            <Label Content="ID: " Grid.Column="1" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0,0" Height="29" VerticalContentAlignment="Center" Width="15" Padding="0,5"/>
+            <Label x:Name="info" Content="" Margin="0,84,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
         </Grid>
 
-    </Grid>
+    </DockPanel>
 </UserControl>

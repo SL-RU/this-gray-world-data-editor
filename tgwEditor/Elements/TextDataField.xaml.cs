@@ -51,6 +51,8 @@ namespace tgwEditor.Elements
                 doc.Text = Text.Text;
                 textBox.Document = doc;
 
+                idLable.Text = Text.ID;
+
                 Text.PropertyChanged += Text_PropertyChanged;
             }
             else
@@ -76,12 +78,12 @@ namespace tgwEditor.Elements
         {
             if (openedTools)
             {
-                tools.Height = 0;
+                tools.MaxHeight = 0;
                 openedTools = !openedTools;
             }
             else
             {
-                tools.Height = 80;
+                tools.MaxHeight = 800;
                 openedTools = !openedTools;
             }
         }

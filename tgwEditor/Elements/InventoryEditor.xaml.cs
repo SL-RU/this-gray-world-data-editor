@@ -93,13 +93,13 @@ namespace tgwEditor.Elements
             ContextMenu m = new ContextMenu();
 
             MenuItem del = new MenuItem();
-            del.Tag = c;
+            del.Tag = kv;
             del.Click += (x, y) =>
             {
-                var k = (x as MenuItem).Tag as KeyStringDataField;
-                source.Remove(k.source);
+                var k = (x as MenuItem).Tag as KeyValDataPair;
+                source.Remove(k);
             };
-            del.Header = "Delete";
+            del.Header = "Delete good";
             m.Items.Add(del);
             c.ContextMenu = m;
             #endregion
