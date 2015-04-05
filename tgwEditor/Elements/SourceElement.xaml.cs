@@ -46,11 +46,14 @@ namespace tgwEditor.Elements
 
         void dt_Tick(object sender, EventArgs e)
         {
-            var di = window.getExistingScript(kvData.Val);
-            if (di != null)
+            if (kvData != null)
             {
-                ITargetAnswer(di.tAnch, true);
-                (sender as DispatcherTimer).Stop();
+                var di = window.getExistingScript(kvData.Val);
+                if (di != null)
+                {
+                    ITargetAnswer(di.tAnch, true);
+                    (sender as DispatcherTimer).Stop();
+                }
             }
         }
 

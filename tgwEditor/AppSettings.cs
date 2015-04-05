@@ -77,7 +77,8 @@ namespace tgwEditor
             foreach (FileInfo file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, false);
+                if (!File.Exists(temppath))
+                    file.CopyTo(temppath, false);
             }
 
             // If copying subdirectories, copy them and their contents to new location. 

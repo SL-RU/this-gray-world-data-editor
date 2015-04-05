@@ -43,6 +43,7 @@ namespace tgwEditor.DiaEditor
 
             SetPosition();
 
+            VarsC.window = wd;
 
             answers = new List<AnswerDataField>();
 

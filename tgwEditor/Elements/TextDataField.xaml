@@ -14,7 +14,7 @@
             <Button x:Name="moreSettingsButton" Content="more" Margin="0,-6,5,0" VerticalAlignment="Top" FontSize="14" FontWeight="Thin" FontFamily="Segoe UI Semibold" Height="25" BorderThickness="0" VerticalContentAlignment="Top" Padding="0" HorizontalContentAlignment="Right" Click="Button_Click" Style="{DynamicResource LinkButton}" Foreground="#7200FF75" Background="#FF323232" MouseMove="moreSettingsButton_MouseMove" MouseLeave="moreSettingsButton_MouseLeave" HorizontalAlignment="Right" />
         </Grid>
 
-        <Grid x:Name="tools" Margin="0" Background="#FF00B352" VerticalAlignment="Top" Grid.Row="1" DockPanel.Dock="Bottom" MaxHeight="109">
+        <Grid x:Name="tools" Margin="0" Background="#FF00B352" VerticalAlignment="Top" Grid.Row="1" DockPanel.Dock="Bottom" MaxHeight="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

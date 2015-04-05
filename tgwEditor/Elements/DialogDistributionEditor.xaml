@@ -36,7 +36,7 @@
                 <DataGridTemplateColumn Header="Dialog Filter" >
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <TextBox x:Name="filter" Text="{Binding AnswerFilter}"/>
+                            <TextBox x:Name="filter" Text="{Binding Path=AnswerFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

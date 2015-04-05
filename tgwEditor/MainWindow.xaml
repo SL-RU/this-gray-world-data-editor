@@ -25,7 +25,7 @@
                 </ad:LayoutRoot.BottomSide>
                 <ad:LayoutPanel>
 
-                    <ad:LayoutAnchorablePane x:Name="Left" DockWidth="200" DockMinWidth="200"/>
+                    <ad:LayoutAnchorablePane x:Name="Left" DockWidth="200" DockMinWidth="210"/>
 
                     <ad:LayoutDocumentPane x:Name="Documents" DockMinWidth="118" DockWidth="200">
                         <ad:LayoutAnchorable Title="Hello window" CanClose="False" CanFloat="False" CanHide="True" >
@@ -37,7 +37,7 @@
                     <ad:LayoutAnchorablePane x:Name="SecondaryRight" DockMinWidth="250" DockWidth="300">
 
                     </ad:LayoutAnchorablePane>
-                    <ad:LayoutAnchorablePane x:Name="Right" DockWidth="250" DockMinWidth="250"/>
+                    <ad:LayoutAnchorablePane x:Name="Right" DockWidth="250" DockMinWidth="400"/>
 
                 </ad:LayoutPanel>
             </ad:LayoutRoot>

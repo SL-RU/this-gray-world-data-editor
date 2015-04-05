@@ -140,6 +140,10 @@ namespace tgwEditor
             {
                 Directory.CreateDirectory(dir + "dia\\");
             }
+            if (!Directory.Exists(dir + "imges\\"))
+            {
+                Directory.CreateDirectory(dir + "imges\\");
+            }
             sData.LOG("Init complete");
         }
         public static void MergeToNewDirectory(string newDir)

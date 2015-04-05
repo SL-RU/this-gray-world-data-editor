@@ -99,11 +99,12 @@ namespace tgwEditor.CharEditor
             {
             }
         }
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (CharacterData.CheckAvailibility(idField.Text, source) && !idField.Text.Contains(' ') && !idField.Text.Contains('\'') && !idField.Text.Contains('\"'))
             {
-                idField.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                idField.Foreground = new SolidColorBrush(Color.FromRgb(254, 255, 255));
             }
             else
             {

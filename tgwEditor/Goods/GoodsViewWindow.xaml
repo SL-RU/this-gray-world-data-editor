@@ -24,8 +24,8 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://sc
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="{Binding ID}"/>
-                        <Label Grid.Column="1" Content="{Binding Description}"/>
+                        <TextBlock Grid.Column="0" Text="{Binding ID}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Description}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

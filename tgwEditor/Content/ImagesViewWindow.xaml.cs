@@ -34,29 +34,33 @@ namespace tgwEditor
         public ImagesViewWindow()
         {
             watcher = new FileSystemWatcher();
-            watcher.Path = sData.path + "//imges";
-            watcher.Created += watcher_Created;
-            watcher.Deleted += watcher_Deleted;
-            watcher.Renamed += watcher_Renamed;
-            watcher.EnableRaisingEvents = true;
+            if (Directory.Exists(sData.path + "imges\\"))
+            {
+                watcher = new FileSystemWatcher();
+                watcher.Path = sData.path + "imges";
 
+                watcher.Created += watcher_Created;
+                watcher.Deleted += watcher_Deleted;
+                watcher.Renamed += watcher_Renamed;
+                watcher.EnableRaisingEvents = true;
+            }
             InitializeComponent();
             Init();
         }
 
         void watcher_Renamed(object sender, RenamedEventArgs e)
         {
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => Rescan())); 
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => Rescan()));
         }
 
         void watcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => Rescan())); 
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => Rescan()));
         }
 
         void watcher_Created(object sender, FileSystemEventArgs e)
         {
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => Rescan())); 
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => Rescan()));
         }
 
 
@@ -67,7 +71,7 @@ namespace tgwEditor
         public static LayoutAnchorable CreateWindow()
         {
             LayoutAnchorable l = new LayoutAnchorable();
-            l.Title = "Scripts";
+            l.Title = "Images";
             l.Content = new ImagesViewWindow();
 
             return l;
@@ -107,23 +111,26 @@ namespace tgwEditor
 
         public void Rescan()
         {
-            watcher.EnableRaisingEvents = false;
-            imges.Clear();
-            var v = (Directory.EnumerateFiles(sData.path + "\\imges"));
-            foreach (var i in v)
+            if (Directory.Exists(sData.path + "imges\\"))
             {
-                if (i.EndsWith(".png") || i.EndsWith(".jpg"))
+                watcher.EnableRaisingEvents = false;
+                imges.Clear();
+                var v = (Directory.EnumerateFiles(sData.path + "\\imges"));
+                foreach (var i in v)
                 {
-                    var data = GetImageData(i.Remove(0, (sData.path + "\\imges\\").Length));
-                    if (data == null)
+                    if (i.EndsWith(".png") || i.EndsWith(".jpg"))
                     {
-                        data = FileBinding.New(i);
-                        DB_source.Root.Add(data.source);
+                        var data = GetImageData(i.Remove(0, (sData.path + "\\imges\\").Length));
+                        if (data == null)
+                        {
+                            data = FileBinding.New(i);
+                            DB_source.Root.Add(data.source);
+                        }
+                        imges.Add(data);
                     }
-                    imges.Add(data);
                 }
+                watcher.EnableRaisingEvents = true;
             }
-            watcher.EnableRaisingEvents = true;
         }
 
         public void Loading()

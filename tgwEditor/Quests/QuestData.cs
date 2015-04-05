@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -129,7 +131,7 @@ namespace tgwEditor
 
 
     //Иформация ответа для квестов. Будет использоваться системой начала диалогов персонажей.
-    public class DialogDistributionItemData : XmlAbstractSerializer
+    public class DialogDistributionItemData : XmlAbstractSerializer, INotifyPropertyChanged
     {
         public const string XElementName = "DialogsDistributionItem";
 
@@ -146,6 +148,19 @@ namespace tgwEditor
         }
 
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         //Kostyl' dlya WPF binding
         public string AnswerFilter
         {
@@ -156,6 +171,7 @@ namespace tgwEditor
             set
             {
                 answer.Filter = value;
+                NotifyPropertyChanged();
             }
         }
 
