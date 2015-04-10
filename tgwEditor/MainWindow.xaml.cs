@@ -46,12 +46,13 @@ namespace tgwEditor
             }
             LogList.ItemsSource = sData.log;
             sData.log.CollectionChanged += log_CollectionChanged;
-
+            
 
             #region Adding view windows
             openWindowInPanel(ProjectsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(TextViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(ImagesViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
+            openWindowInPanel(AudioViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(ScriptsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(DialogOriginsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);
             openWindowInPanel(GlobalVarsViewWindow.CreateWindow(), MainWindowPanelType.Left, true);

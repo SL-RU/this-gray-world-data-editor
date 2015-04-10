@@ -45,6 +45,9 @@ namespace tgwEditor
             l.Title = "Scripts";
             l.Content = new ScriptsViewWindow();
 
+            l.CanClose = false;
+            l.CanFloat = false;
+
             return l;
         }
     }

@@ -68,6 +68,10 @@ namespace tgwEditor
             LayoutAnchorable la = new LayoutAnchorable();
             la.Content = new GoodsViewWindow();
             la.Title = "Goods view window";
+
+            la.CanClose = false;
+            la.CanFloat = false;
+
             return la;
         }
 

@@ -106,8 +106,17 @@ namespace tgwEditor.Quests
 
             al.AutoHideMinWidth = al.FloatingWidth = v.MinWidth;
 
+            al.CanClose = false;
+            al.Closing += al_Closing;
+            al.CanFloat = false;
+            
 
             return al;
+        }
+
+        static void al_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
 
         public static QuestsEditor OpenNewInMainWindow()

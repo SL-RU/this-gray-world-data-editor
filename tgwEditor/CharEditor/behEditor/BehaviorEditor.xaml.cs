@@ -35,16 +35,26 @@ namespace tgwEditor.CharEditor
         public void setChar(CharacterData cd)
         {
             source = cd;
-            behs.ItemsSource = source.behStates;
+            //behs.ItemsSource = source.behStates;
+            if(cd.behStates.Count() < 1)
+            {
+                var l = LocationBehaviorStateData.New();
+                l.Location = "*";
+                cd.behStates.Add(l);
+                var key = KeyValDataPair.New("click", KeyValDataPair.VALUE_TYPE_SCRIPT_ID);
+                ScriptData sd = ScriptData.New();
+                key.Val = sd.ID;
+                l.handlers.Add(key);
+                sData.scripts.Add(sd);
+            }
+            var el = cd.behStates.Where(x => x.Location == "*").First();
+
+            scr.SetScriptFromKeyVal(el.handlers.First());
         }
 
 
         private void addClick(object sender, RoutedEventArgs e)
         {
-            if(source!=null)
-            {
-                source.behStates.Add(LocationBehaviorStateData.New());
-            }
         }
 
         private void del_Click(object sender, RoutedEventArgs e)

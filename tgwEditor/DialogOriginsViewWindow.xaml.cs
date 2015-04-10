@@ -42,6 +42,9 @@ namespace tgwEditor
             l.Title = "DiaOrigins";
             l.Content = new DialogOriginsViewWindow();
 
+            l.CanClose = false;
+            l.CanFloat = false;
+
             return l;
         }
     }

@@ -134,6 +134,9 @@
       <DependentUpon>CharactersViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CharEditor\CharacterData.cs" />
+    <Compile Include="Content\AudioViewWindow.xaml.cs">
+      <DependentUpon>AudioViewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\ImagesViewWindow.xaml.cs">
       <DependentUpon>ImagesViewWindow.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
     <Page Include="CharEditor\CharactersViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\AudioViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Content\ImagesViewWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

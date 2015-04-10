@@ -15,7 +15,7 @@
                 <DataGridTemplateColumn Header="Dialog" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding Dialogs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox ToolTip="{Binding Dialogs}" Text="{Binding Dialogs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="9" Width="70" TextOptions.TextFormattingMode="Display" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

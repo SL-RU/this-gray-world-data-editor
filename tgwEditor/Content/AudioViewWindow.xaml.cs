@@ -26,18 +26,25 @@ namespace tgwEditor
     /// Логика взаимодействия для ScriptsViewWindow.xaml
     /// </summary>
     /// 
-    public partial class ImagesViewWindow : UserControl, ILoadableWindow
+    public partial class AudioViewWindow : UserControl, ILoadableWindow
     {
-        public static ObservableCollection<FileBinding> imges;
+        public static ObservableCollection<FileBinding> audios;
+        public static AudioViewWindow instance;
+
+        public MediaPlayer mp = new MediaPlayer();
+
+        
         FileSystemWatcher watcher;
 
-        public ImagesViewWindow()
+
+        public AudioViewWindow()
         {
+            instance = this;
             watcher = new FileSystemWatcher();
-            if (Directory.Exists(sData.path + "imges\\"))
+            if (Directory.Exists(sData.path + "audio\\"))
             {
                 watcher = new FileSystemWatcher();
-                watcher.Path = sData.path + "imges";
+                watcher.Path = sData.path + "audio";
 
                 watcher.Created += watcher_Created;
                 watcher.Deleted += watcher_Deleted;
@@ -71,8 +78,8 @@ namespace tgwEditor
         public static LayoutAnchorable CreateWindow()
         {
             LayoutAnchorable l = new LayoutAnchorable();
-            l.Title = "Images";
-            l.Content = new ImagesViewWindow();
+            l.Title = "Audio";
+            l.Content = new AudioViewWindow();
 
             l.CanClose = false;
             l.CanFloat = false;
@@ -84,22 +91,30 @@ namespace tgwEditor
         {
             if (findF.Text != "")
             {
-                filesBinding.ItemsSource = imges.Where(x => x.name.ToUpper().Contains(findF.Text.ToUpper()) ||
+                filesBinding.ItemsSource = audios.Where(x => x.name.ToUpper().Contains(findF.Text.ToUpper()) ||
                     x.description.ToUpper().Contains(findF.Text.ToUpper()) ||
                     x.dataFileName.ToUpper().Contains(findF.Text.ToUpper()));
             }
             else
-                filesBinding.ItemsSource = imges;
+                filesBinding.ItemsSource = audios;
         }
 
         XDocument DB_source;
-        string db_filepath = "imges\\img_db.xml";
+        string db_filepath = "audio\\audio_db.xml";
         public void Init()
         {
+            if (Directory.Exists(sData.path))
+            {
+                if (!Directory.Exists(sData.path + "audio"))
+                {
+                    Directory.CreateDirectory(sData.path + "audio");
+                }
+            }
+
             DB_source = new XDocument();
-            DB_source.Add(new XElement("images"));
-            imges = new ObservableCollection<FileBinding>();
-            filesBinding.ItemsSource = imges;
+            DB_source.Add(new XElement("audio"));
+            audios = new ObservableCollection<FileBinding>();
+            filesBinding.ItemsSource = audios;
 
             Rescan();
         }
@@ -108,28 +123,28 @@ namespace tgwEditor
         {
             var v = DB_source.Root.Elements().Where(x => x.Attribute("fileName").Value == fileName);
             if (v.Count() > 0)
-                return new FileBinding(v.First(), (sData.path + "imges\\"), FileBinding.IMG_TYPE);
+                return new FileBinding(v.First(), (sData.path + "audio\\"), FileBinding.AUDIO_TYPE);
             return null;
         }
 
         public void Rescan()
         {
-            if (Directory.Exists(sData.path + "imges\\"))
+            if (Directory.Exists(sData.path + "audio"))
             {
                 watcher.EnableRaisingEvents = false;
-                imges.Clear();
-                var v = (Directory.EnumerateFiles(sData.path + "imges"));
+                audios.Clear();
+                var v = (Directory.EnumerateFiles(sData.path + "audio"));
                 foreach (var i in v)
                 {
-                    if (i.EndsWith(".png") || i.EndsWith(".jpg"))
+                    if (i.EndsWith(".mp3") || i.EndsWith(".wav"))
                     {
-                        var data = GetImageData(i.Remove(0, (sData.path + "imges\\").Length));
+                        var data = GetImageData(i.Remove(0, (sData.path + "audio\\").Length));
                         if (data == null)
                         {
-                            data = FileBinding.New(i, (sData.path + "imges\\"), FileBinding.IMG_TYPE);
+                            data = FileBinding.New(i, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
                             DB_source.Root.Add(data.source);
                         }
-                        imges.Add(data);
+                        audios.Add(data);
                     }
                 }
                 watcher.EnableRaisingEvents = true;
@@ -138,12 +153,19 @@ namespace tgwEditor
 
         public void Loading()
         {
+            if (Directory.Exists(sData.path))
+            {
+                if (!Directory.Exists(sData.path + "audio"))
+                {
+                    Directory.CreateDirectory(sData.path + "audio");
+                }
+            }
             watcher.EnableRaisingEvents = false;
             string filepath = sData.path + db_filepath;
             if (File.Exists(filepath))
                 DB_source = XDocument.Load(filepath);
             Rescan();
-            watcher.Path = sData.path + "imges";
+            watcher.Path = sData.path + "audio";
             watcher.EnableRaisingEvents = true;
         }
 
@@ -165,15 +187,15 @@ namespace tgwEditor
                     int ind = 0;
                     string name, sname = f.Split('\\').Last();
                     name = sname;
-                    if (File.Exists(sData.path + "imges\\" + name))
+                    if (File.Exists(sData.path + "audio\\" + name))
                     {
-                        while (File.Exists(sData.path + "imges\\" + name))
+                        while (File.Exists(sData.path + "audio\\" + name))
                         {
                             name = ind.ToString() + sname;
                             ind++;
                         }
                     }
-                    File.Copy(f, sData.path + "imges\\" + name);
+                    File.Copy(f, sData.path + "audio\\" + name);
                 }
                 Rescan();
             }
@@ -199,7 +221,7 @@ namespace tgwEditor
             {
                 var file = ((sender as MenuItem).DataContext as FileBinding);
 
-                var wi = InputBoxWindow.CreateNew("Change image lable", "Image lable", file.name);
+                var wi = InputBoxWindow.CreateNew("Change audio lable", "Audio lable", file.name);
                 wi.OnTextEnteredEvent += new InputBoxWindow.TextEntered(delegate(InputBoxWindow w, string s, bool b)
                 {
                     if (!b)
@@ -216,7 +238,7 @@ namespace tgwEditor
             {
                 var file = ((sender as MenuItem).DataContext as FileBinding);
 
-                var wi = InputBoxWindow.CreateNew("Change image description", "Image description", file.description);
+                var wi = InputBoxWindow.CreateNew("Change audio description", "Audio description", file.description);
                 wi.OnTextEnteredEvent += new InputBoxWindow.TextEntered(delegate(InputBoxWindow w, string s, bool b)
                 {
                     if (!b)
@@ -226,97 +248,18 @@ namespace tgwEditor
                 });
             }
         }
-    }
-    public class FileBinding : INotifyPropertyChanged
-    {
-        public XElement source;
-
-        public const string IMG_TYPE = "img",
-            AUDIO_TYPE = "audio";
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (PropertyChanged != null && propertyName != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
 
-        private string fileDirPath;
-        public string Type;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="xe"></param>
-        /// <param name="fileDirPath">Path to file directory with '\\' in the end</param>
-        public FileBinding(XElement xe, string fileDirPath, string type)
+        private void Play_Click(object sender, RoutedEventArgs e)
         {
-            this.fileDirPath = fileDirPath;
-            Type = type;
-            source = xe;
-            switch (type)
-            {
-                case IMG_TYPE:
-                    image = new BitmapImage();
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.UriSource = new Uri(filePath);
-                    image.EndInit();
-                    break;
-                case AUDIO_TYPE:
-                    break;
-            }
+            var f = ((sender as Button).DataContext as FileBinding).filePath;
+            mp.Open(new Uri(f));
+            mp.Play();
         }
 
-        /// <summary>
-        /// global file name
-        /// </summary>
-        public string filePath
+        private void Pause_Click(object sender, RoutedEventArgs e)
         {
-            get
-            {
-                return fileDirPath + dataFileName;
-            }
-            //set { dataFileName = value.Remove(0, (sData.path + "\\imges\\").Length); }
-        }
-        /// <summary>
-        /// relative file name
-        /// </summary>
-        public string dataFileName
-        {
-            get
-            {
-                return source.Attribute("fileName").Value.ToString();
-            }
-            //set { source.Attribute("fileName").Value = value; }
-        }
-        public string name
-        {
-            get { return source.Attribute("name").Value.ToString(); }
-            set { source.Attribute("name").Value = value; OnPropertyChanged(); }
-        }
-        public string description
-        {
-            get { return source.Attribute("description").Value.ToString(); }
-            set { source.Attribute("description").Value = value; OnPropertyChanged(); }
-        }
-
-        public BitmapImage image
-        {
-            get;
-            set;
-        }
-
-        public static FileBinding New(string FullFilename, string fileDirPath, string type)
-        {
-            XElement x = new XElement("img");
-            x.Add(new XAttribute("fileName", FullFilename.Remove(0, (fileDirPath).Length)));
-            x.Add(new XAttribute("name", FullFilename.Remove(0, (fileDirPath).Length)));
-            x.Add(new XAttribute("description", FullFilename.Remove(0, (fileDirPath).Length)));
-            x.Add(new XAttribute("ID", Guid.NewGuid().ToString()));
-            return new FileBinding(x, fileDirPath, type);
+            mp.Stop();
         }
     }
 }

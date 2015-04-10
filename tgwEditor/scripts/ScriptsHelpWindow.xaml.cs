@@ -58,6 +58,9 @@ namespace tgwEditor.scripts
             l.Title = "ScriptsHelp";
             l.Content = new ScriptsHelpWindow();
 
+            l.CanClose = false;
+            l.CanFloat = false;
+            
             return l;
         }
     }

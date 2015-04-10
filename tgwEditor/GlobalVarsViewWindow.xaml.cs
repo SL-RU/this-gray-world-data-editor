@@ -58,6 +58,9 @@ namespace tgwEditor
 
             l.AutoHideMinWidth = l.FloatingWidth = v.MinWidth;
 
+            l.CanClose = false;
+            l.CanFloat = false;
+
             return l;
         }
 

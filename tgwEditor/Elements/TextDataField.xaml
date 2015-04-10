@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:av="http://icsharpcode.net/sharpdevelop/avalonedit"
-
+             xmlns:ewt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="158" d:DesignWidth="526">
 
@@ -19,14 +19,53 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SoundTextBox" Text="{Binding Sound}" Height="22" TextWrapping="Wrap"  VerticalAlignment="Top" Margin="0" BorderThickness="0" Grid.ColumnSpan="2" Background="#FF0071CE"/>
-
-            <TextBox x:Name="newIDTextBox" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="0,26,0,0" BorderThickness="0"/>
-            <Button  x:Name="set_text" Content="Set this text ID" Margin="0,26,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="set_text_Click" BorderThickness="0" Padding="0,5"/>
-            <Button  x:Name="new_text" Content="New text" Margin="0,55,0,-26" VerticalAlignment="Top" Click="new_text_Click"/>
+            <ewt:DropDownButton x:Name="selButton" Height="30" Background="Black" VerticalContentAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" VerticalAlignment="Top">
+                <ewt:DropDownButton.Content>
+                    <TextBlock x:Name="lbl" Text="{Binding Sound}" Foreground="Black" TextAlignment="Center"/>
+                </ewt:DropDownButton.Content>
+                <ewt:DropDownButton.DropDownContent>
+                    <Grid Width="341" Height="503">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="31" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="searchTextBox" VerticalAlignment="Top" TextChanged="searchTextBox_TextChanged" />
+                        <ListBox x:Name="filesBinding" Margin="0" Background="#FFD84581" MouseDoubleClick="filesBinding_MouseDoubleClick" Grid.Row="1" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ToolTip>
+                                            <ToolTip Content="{Binding description}"/>
+                                        </Grid.ToolTip>
+                                        <!--<Image Stretch="Uniform" Width="100" Source="{Binding image}" Margin="0,0,0,30" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
+                                        <Button Click="Play_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" BorderThickness="0" Padding="7,2,3,2">
+                                            <Rectangle>
+                                                <Rectangle.Fill>
+                                                    <VisualBrush Visual="{StaticResource appbar_control_play}" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                        </Button>
+                                        <Button Click="Pause_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" BorderThickness="0" Padding="5,2" Margin="30,0,0,0">
+                                            <Rectangle>
+                                                <Rectangle.Fill>
+                                                    <VisualBrush Visual="{StaticResource appbar_control_pause}" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                        </Button>
+                                        <TextBlock Width="Auto" Text="{Binding name}" VerticalAlignment="Stretch" Height="30" Margin="60,0,0,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </ewt:DropDownButton.DropDownContent>
+            </ewt:DropDownButton>
+            <TextBox x:Name="newIDTextBox" Height="29" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="0,30,0,0" BorderThickness="0"/>
+            <Button  x:Name="set_text" Content="Set this text ID" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="set_text_Click" BorderThickness="0" Padding="0,5"/>
+            <Button  x:Name="new_text" Content="New text" Margin="0,59,0,0" VerticalAlignment="Top" Click="new_text_Click"/>
             <!--<Button x:Name="Last_free_id" Content="Last free text id" Margin="4,32,4,0" VerticalAlignment="Top" Grid.Column="1" d:IsHidden="True"/>-->
-            <TextBlock x:Name="idLable" Text="c5960c1f-6fdd-4ca3-a00e-83aebad77099" VerticalAlignment="Top" Margin="17,55,0,0" Grid.Column="1" Foreground="White" Height="29" TextWrapping="Wrap" TextAlignment="Center"/>
-            <Label Content="ID: " Grid.Column="1" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0,0" Height="29" VerticalContentAlignment="Center" Width="15" Padding="0,5"/>
+            <TextBlock x:Name="idLable" Text="c5960c1f-6fdd-4ca3-a00e-83aebad77099" VerticalAlignment="Center" Margin="17,59,0,22" Grid.Column="1" Foreground="White" Height="29" TextWrapping="Wrap" TextAlignment="Center"/>
+            <Label Content="ID: " Grid.Column="1" HorizontalAlignment="Left" Margin="0,59,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0,0" Height="29" VerticalContentAlignment="Center" Width="15" Padding="0,5"/>
             <Label x:Name="info" Content="" Margin="0,84,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
         </Grid>
 

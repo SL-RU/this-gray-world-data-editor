@@ -30,6 +30,8 @@ namespace tgwEditor.Elements
         {
             InitializeComponent();
             Link = link;
+            filesBinding.ItemsSource = AudioViewWindow.audios;
+
             link.ValueChanged_Event += link_ValueChanged_Event;
             changeId();
         }
@@ -53,6 +55,9 @@ namespace tgwEditor.Elements
 
                 idLable.Text = Text.ID;
 
+                lbl.Text = Text.Sound;
+
+
                 Text.PropertyChanged += Text_PropertyChanged;
             }
             else
@@ -69,6 +74,7 @@ namespace tgwEditor.Elements
         {
             if (doc.Text != Text.Text)
                 doc.Text = Text.Text;
+            lbl.Text = Text.Sound;
         }
 
 
@@ -136,6 +142,43 @@ namespace tgwEditor.Elements
             var sl = (moreSettingsButton.Foreground as SolidColorBrush).Color;
             (moreSettingsButton.Foreground as SolidColorBrush).Color = Color.FromArgb(10, sl.R, sl.G, sl.B);
         }
+
+        private void filesBinding_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (filesBinding.SelectedItem != null)
+            {
+                if (Text != null)
+                {
+                    Text.Sound = (filesBinding.SelectedItem as FileBinding).dataFileName;
+                }
+            }
+        }
+
+        private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (searchTextBox.Text != "")
+            {
+                filesBinding.ItemsSource = AudioViewWindow.audios.Where(x => x.name.ToUpper().Contains(searchTextBox.Text.ToUpper()) ||
+                    x.description.ToUpper().Contains(searchTextBox.Text.ToUpper()) ||
+                    x.dataFileName.ToUpper().Contains(searchTextBox.Text.ToUpper()));
+            }
+            else
+                filesBinding.ItemsSource = AudioViewWindow.audios;
+
+        }
+
+        private void Play_Click(object sender, RoutedEventArgs e)
+        {
+            var f = ((sender as Button).DataContext as FileBinding).filePath;
+            AudioViewWindow.instance.mp.Open(new Uri(f));
+            AudioViewWindow.instance.mp.Play();
+        }
+
+        private void Pause_Click(object sender, RoutedEventArgs e)
+        {
+            AudioViewWindow.instance.mp.Stop();
+        }
+
 
 
     }

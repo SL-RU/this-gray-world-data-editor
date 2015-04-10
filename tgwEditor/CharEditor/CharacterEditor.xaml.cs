@@ -178,7 +178,9 @@ namespace tgwEditor.CharEditor
             l.Content = w;
             w.LaWindow = l;
             l.AutoHideMinWidth = l.FloatingWidth = w.MinWidth;
-
+            l.CanClose = false;
+            l.CanFloat = false;
+            
 
             return l;
         }
