@@ -89,7 +89,7 @@ namespace tgwEditor.Elements
                     completionWindow = new CompletionWindow(editor.TextArea);
                     IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
 
-                    if (!lineText.Contains("(") && !lineText.Contains("="))
+                    if (!lineText.Contains("(") && !lineText.Contains(".") && !lineText.Contains(":") && !lineText.Contains("="))
                     {
 
                         //Add global completion data
@@ -270,7 +270,7 @@ namespace tgwEditor.Elements
 
             if (doned == vars.Count)
             {
-                textArea.Document.Replace(completionSegment.Offset - 1, completionSegment.Length + 1, txt + "\n");
+                //textArea.Document.Replace(completionSegment.Offset - 1, completionSegment.Length + 1, txt + " ");
             }
 
         }

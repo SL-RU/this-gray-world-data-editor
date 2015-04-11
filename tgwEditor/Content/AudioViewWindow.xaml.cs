@@ -19,6 +19,10 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using tgwEditor.Elements;
 using Xceed.Wpf.AvalonDock.Layout;
+using NAudio.Wave;
+using NAudio.Lame;
+
+
 
 namespace tgwEditor
 {
@@ -119,7 +123,7 @@ namespace tgwEditor
             Rescan();
         }
 
-        public FileBinding GetImageData(string fileName)
+        public FileBinding GetAudioData(string fileName)
         {
             var v = DB_source.Root.Elements().Where(x => x.Attribute("fileName").Value == fileName);
             if (v.Count() > 0)
@@ -134,11 +138,18 @@ namespace tgwEditor
                 watcher.EnableRaisingEvents = false;
                 audios.Clear();
                 var v = (Directory.EnumerateFiles(sData.path + "audio"));
+
+
+                if (v.Where(x=>x.EndsWith(".wav") || x.EndsWith(".mp3")).Count() > 0) //hide tip
+                    drop_tip.Visibility = System.Windows.Visibility.Collapsed;
+                else
+                    drop_tip.Visibility = System.Windows.Visibility.Visible;
+
                 foreach (var i in v)
                 {
-                    if (i.EndsWith(".mp3") || i.EndsWith(".wav"))
+                    if (i.EndsWith(".wav"))
                     {
-                        var data = GetImageData(i.Remove(0, (sData.path + "audio\\").Length));
+                        var data = GetAudioData(i.Remove(0, (sData.path + "audio\\").Length));
                         if (data == null)
                         {
                             data = FileBinding.New(i, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
@@ -146,6 +157,22 @@ namespace tgwEditor
                         }
                         audios.Add(data);
                     }
+                    else if (i.EndsWith(".mp3")) 
+                    {
+                        //convert mp3 files to wave and deleting source
+                        string newI = i.Remove(i.Length - 5) + ".wav";
+                        Codec.MP3ToWave(i, newI);
+                        File.Delete(i);
+
+                        var data = GetAudioData(newI.Remove(0, (sData.path + "audio\\").Length));
+                        if (data == null)
+                        {
+                            data = FileBinding.New(newI, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
+                            DB_source.Root.Add(data.source);
+                        }
+                        audios.Add(data);
+                    }
+
                 }
                 watcher.EnableRaisingEvents = true;
             }
@@ -260,6 +287,25 @@ namespace tgwEditor
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
             mp.Stop();
+        }
+    }
+
+    public static class Codec
+    {
+        // Convert WAV to MP3 using libmp3lame library
+        public static void WaveToMP3(string waveFileName, string mp3FileName, int bitRate = 128)
+        {
+            using (var reader = new WaveFileReader(waveFileName))
+            using (var writer = new LameMP3FileWriter(mp3FileName, reader.WaveFormat, bitRate))
+                reader.CopyTo(writer);
+        }
+
+        // Convert MP3 file to WAV using NAudio classes only
+        public static void MP3ToWave(string mp3FileName, string waveFileName)
+        {
+            using (var reader = new Mp3FileReader(mp3FileName))
+            using (var writer = new WaveFileWriter(waveFileName, reader.WaveFormat))
+                reader.CopyTo(writer);
         }
     }
 }

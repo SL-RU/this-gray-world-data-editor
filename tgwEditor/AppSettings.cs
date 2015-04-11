@@ -12,7 +12,7 @@ namespace tgwEditor
         public static string configFilePath = "config.prop";
         public static string FolderPath = "";
 
-        public static bool ShowInputBoxWindowOnLuaAutocomplete = true;
+        public static bool ShowInputBoxWindowOnLuaAutocomplete = false;
 
         public static void Load()
         {

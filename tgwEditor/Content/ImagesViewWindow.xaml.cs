@@ -119,6 +119,13 @@ namespace tgwEditor
                 watcher.EnableRaisingEvents = false;
                 imges.Clear();
                 var v = (Directory.EnumerateFiles(sData.path + "imges"));
+
+                if (v.Where(x => x.EndsWith(".png") || x.EndsWith(".jpg")).Count() > 0) //hide tip
+                    drop_tip.Visibility = System.Windows.Visibility.Collapsed;
+                else
+                    drop_tip.Visibility = System.Windows.Visibility.Visible;
+
+
                 foreach (var i in v)
                 {
                     if (i.EndsWith(".png") || i.EndsWith(".jpg"))

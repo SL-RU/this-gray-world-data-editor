@@ -46,6 +46,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Label x:Name="drop_tip" Content="Drop files here or in the audio folder&#xD;&#xA;&#xD;&#xA;Allowed .mp3 and .wav&#xD;&#xA;All mp3 files will be automatically converted to wav" VerticalAlignment="Top" Margin="10,177,10,0" Height="87" Background="#00000000" Foreground="#B2FFFFFF" HorizontalContentAlignment="Center"/>
 
     </Grid>
 </UserControl>
