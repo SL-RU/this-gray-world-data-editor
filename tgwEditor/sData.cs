@@ -104,6 +104,8 @@ namespace tgwEditor
 
                 Directory.CreateDirectory(path);
                 Directory.CreateDirectory(path + "\\dia\\");
+                Directory.CreateDirectory(path + "\\imges\\");
+                Directory.CreateDirectory(path + "\\audio\\");
 
                 Save();
 
