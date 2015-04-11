@@ -146,6 +146,10 @@ namespace tgwEditor
             {
                 Directory.CreateDirectory(dir + "imges\\");
             }
+            if (!Directory.Exists(dir + "audio\\"))
+            {
+                Directory.CreateDirectory(dir + "audio\\");
+            }
             sData.LOG("Init complete");
         }
         public static void MergeToNewDirectory(string newDir)
