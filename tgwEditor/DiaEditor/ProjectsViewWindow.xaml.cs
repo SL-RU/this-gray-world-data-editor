@@ -32,15 +32,29 @@ namespace tgwEditor
             if (!Directory.Exists(sData.path + "dia\\"))
                 Directory.CreateDirectory(sData.path + "dia\\");
 
-            timer_Tick(null, null);
+            Rescan();
 
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            FileSystemWatcher watch = new FileSystemWatcher(sData.path + "dia\\");
+            watch.Created += watch_Created;
+            watch.Deleted += watch_Deleted;
+            watch.Renamed += watch_Renamed;
 
             dialogs.ItemsSource = Dialogs;
+        }
+
+        void watch_Renamed(object sender, RenamedEventArgs e)
+        {
+            Rescan();
+        }
+
+        void watch_Deleted(object sender, FileSystemEventArgs e)
+        {
+            Rescan();
+        }
+
+        void watch_Created(object sender, FileSystemEventArgs e)
+        {
+            Rescan();
         }
         public class FileTemplate
         {
@@ -58,7 +72,8 @@ namespace tgwEditor
 
         public List<FileTemplate> Dialogs = new List<FileTemplate>();
 
-        void timer_Tick(object sender, EventArgs e)
+
+        public void Rescan()
         {
             Dialogs.Clear();
             if (!Directory.Exists(sData.path + "dia\\"))
@@ -70,10 +85,8 @@ namespace tgwEditor
             }
 
             dialogs.ItemsSource = Dialogs;
-
-            //dialogs.ExpandSubtree();
-
         }
+
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
@@ -98,7 +111,7 @@ namespace tgwEditor
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            timer_Tick(null, null);
+            Rescan();
         }
 
 

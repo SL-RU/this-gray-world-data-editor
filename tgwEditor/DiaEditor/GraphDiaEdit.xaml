@@ -14,8 +14,9 @@
             <Button Content="LOAD" HorizontalAlignment="Left" Click="Button_Click_1" Margin="57,0,0,0"/>
             <Label x:Name="toolLable" Content="Label" HorizontalAlignment="Right" VerticalAlignment="Top" Height="27" Width="284" VerticalContentAlignment="Center" Foreground="White" Background="#FF424242" FontSize="18" Padding="5,0,5,5"/>
             <TextBox x:Name="filePath" Text="{Binding ProjectName}" HorizontalAlignment="Left" Margin="183,-2,0,0" VerticalAlignment="Top" Height="29" Width="238" Background="Black" Foreground="White" FontSize="14" TextChanged="filePath_TextChanged"/>
+            <Button Content="EXPORT" HorizontalAlignment="Left" Click="export_click" Margin="425,0,0,0"/>
         </Grid>
-        <Grid x:Name="MainGrid" Margin="0,33,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <Grid x:Name="MainGrid" Margin="0,33,0,0">
             <xctk:Zoombox HorizontalContentAlignment="Stretch" Margin="1" BorderThickness="8" BorderBrush="#FF171717" MaxScale="3" MinScale="0.2" ZoomOn="View" Scale="0.5">
                 <Grid x:Name="containerDataGrid" Width="5000" Height="5000" Margin="-2500,-2500,0,0">
 
@@ -28,7 +29,7 @@
                                 <MenuItem Header="Add new dialog origin" Background="#FFB600B6" Click="AddDiaOrigin_Click"/>
 
                                 <MenuItem Header="Add note" Click="MenuItemNote_Click" Background="#FFF6FF3E" />
-                                <!--<MenuItem Header="Add metronome" Click="MenuItemMetronome_Click" Background="#FF056800" />-->
+                                <MenuItem Header="Add metronome" Click="MenuItemMetronome_Click" Background="#FF056800" Height="5" />
                             </ContextMenu>
 
                         </Canvas.ContextMenu>

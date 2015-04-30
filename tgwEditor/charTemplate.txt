@@ -9,20 +9,20 @@ luck
 [app]
 =pony
 -mane
-twi 2
-rd 0
-fl 1
-aj 1
-lyra 2
+twi 21
+rd 00
+fl 10
+aj 20
+lyra 21
 -tale
-twi 2
-rd 0
-fl 1
-aj 1
-lyra 2
+twi 21
+rd 00
+fl 10
+aj 11
+lyra 21
 -body
-male 1
-female 1
+male 11
+female 11
 =dragon
 -body
-spike 0
+spike 00

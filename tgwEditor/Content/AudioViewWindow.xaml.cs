@@ -37,7 +37,7 @@ namespace tgwEditor
 
         public MediaPlayer mp = new MediaPlayer();
 
-        
+
         FileSystemWatcher watcher;
 
 
@@ -54,6 +54,7 @@ namespace tgwEditor
                 watcher.Deleted += watcher_Deleted;
                 watcher.Renamed += watcher_Renamed;
                 watcher.EnableRaisingEvents = true;
+                watcher.IncludeSubdirectories = true;
             }
             InitializeComponent();
             Init();
@@ -133,49 +134,50 @@ namespace tgwEditor
 
         public void Rescan()
         {
-            if (Directory.Exists(sData.path + "audio"))
-            {
-                watcher.EnableRaisingEvents = false;
-                audios.Clear();
-                var v = (Directory.EnumerateFiles(sData.path + "audio"));
-
-
-                if (v.Where(x=>x.EndsWith(".wav") || x.EndsWith(".mp3")).Count() > 0) //hide tip
-                    drop_tip.Visibility = System.Windows.Visibility.Collapsed;
-                else
-                    drop_tip.Visibility = System.Windows.Visibility.Visible;
-
-                foreach (var i in v)
+            if (Directory.Exists(sData.path))
+                if (Directory.Exists(sData.path + "audio"))
                 {
-                    if (i.EndsWith(".wav"))
-                    {
-                        var data = GetAudioData(i.Remove(0, (sData.path + "audio\\").Length));
-                        if (data == null)
-                        {
-                            data = FileBinding.New(i, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
-                            DB_source.Root.Add(data.source);
-                        }
-                        audios.Add(data);
-                    }
-                    else if (i.EndsWith(".mp3")) 
-                    {
-                        //convert mp3 files to wave and deleting source
-                        string newI = i.Remove(i.Length - 5) + ".wav";
-                        Codec.MP3ToWave(i, newI);
-                        File.Delete(i);
+                    watcher.EnableRaisingEvents = false;
+                    audios.Clear();
+                    var v = (Directory.EnumerateFiles(sData.path + "audio", "*", SearchOption.AllDirectories));
 
-                        var data = GetAudioData(newI.Remove(0, (sData.path + "audio\\").Length));
-                        if (data == null)
-                        {
-                            data = FileBinding.New(newI, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
-                            DB_source.Root.Add(data.source);
-                        }
-                        audios.Add(data);
-                    }
+                    //hide tip
+                    if (v.Where(x => x.EndsWith(".wav") || x.EndsWith(".mp3") || x.EndsWith(".WAV") || x.EndsWith(".MP3")).Count() > 0)
+                        drop_tip.Visibility = System.Windows.Visibility.Collapsed;
+                    else
+                        drop_tip.Visibility = System.Windows.Visibility.Visible;
 
+                    foreach (var i in v)
+                    {
+                        if (i.EndsWith(".wav") || i.EndsWith(".WAV"))
+                        {
+                            var data = GetAudioData(i.Remove(0, (sData.path + "audio\\").Length));
+                            if (data == null)
+                            {
+                                data = FileBinding.New(i, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
+                                DB_source.Root.Add(data.source);
+                            }
+                            audios.Add(data);
+                        }
+                        else if (i.EndsWith(".mp3") || i.EndsWith(".MP3"))
+                        {
+                            //convert mp3 files to wave and deleting source
+                            string newI = i.Remove(i.Length - 5) + ".wav";
+                            Codec.MP3ToWave(i, newI);
+                            File.Delete(i);
+
+                            var data = GetAudioData(newI.Remove(0, (sData.path + "audio\\").Length));
+                            if (data == null)
+                            {
+                                data = FileBinding.New(newI, sData.path + "audio\\", FileBinding.AUDIO_TYPE);
+                                DB_source.Root.Add(data.source);
+                            }
+                            audios.Add(data);
+                        }
+
+                    }
+                    watcher.EnableRaisingEvents = true;
                 }
-                watcher.EnableRaisingEvents = true;
-            }
         }
 
         public void Loading()

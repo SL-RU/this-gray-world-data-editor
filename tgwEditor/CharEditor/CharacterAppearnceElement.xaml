@@ -4,19 +4,59 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:xe="http://schemas.xceed.com/wpf/xaml/toolkit"
-             mc:Ignorable="d" d:DesignWidth="300" Height="24.333">
+             xmlns:el ="clr-namespace:tgwEditor.Elements"
+             mc:Ignorable="d" d:DesignWidth="410.5" Height="26">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition x:Name="col1Column" Width="50"/>
             <ColumnDefinition x:Name="col2Column" Width="50"/>
             <ColumnDefinition x:Name="col3Column" Width="50"/>
+            <ColumnDefinition x:Name="textureColumn" Width="*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="partLable" Content="Label" VerticalContentAlignment="Center" Background="#7F323232" Foreground="White"/>
         <xe:ColorPicker x:Name="col2" Margin="0"  SelectedColor="{Binding Val}" BorderThickness="1,1,0,1" Grid.Column="3" BorderBrush="#FF727272" ToolTip="Secondary color" ColorMode="ColorCanvas" HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         <xe:ColorPicker x:Name="col3" Margin="0" SelectedColor="{Binding Val}" Grid.Column="4" ToolTip="Third color" BorderBrush="#FF4F4F4F" ColorMode="ColorCanvas" HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         <ComboBox SelectedItem="{Binding Val}" x:Name="type" Margin="0" Grid.Column="1" ToolTip="Type" SelectionChanged="type_SelectionChanged"/>
         <xe:ColorPicker x:Name="col1" BorderThickness="1,1,0,1"  SelectedColor="{Binding Val}" Grid.Column="2" ToolTip="Main color" BorderBrush="#FF8D8D8D" ColorMode="ColorCanvas" HorizontalContentAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" Width="50"/>
-    </Grid>
+        <xe:DropDownButton x:Name="selButton" Grid.Column="5" Height="26" Background="Black" VerticalContentAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch">
+            <xe:DropDownButton.Content>
+                <TextBlock x:Name="lbl" Text="{Binding Val}" Foreground="Black" TextAlignment="Center"/>
+            </xe:DropDownButton.Content>
+            <xe:DropDownButton.DropDownContent>
+                <Grid Width="341" Height="503">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="searchTextBox" VerticalAlignment="Top" TextChanged="searchTextBox_TextChanged" />
+                    <ScrollViewer Margin="0,0,0,0" Grid.Row="1">
+                        <ItemsControl x:Name="filesBinding">
+                            <ItemsControl.Template>
+                                <ControlTemplate>
+                                    <WrapPanel  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" 
+                    FlowDirection="LeftToRight" IsItemsHost="true">
+                                    </WrapPanel>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Click="Button_Click">
+                                        <Grid>
+                                            <Grid.ToolTip>
+                                                <ToolTip Content="{Binding description}"/>
+                                            </Grid.ToolTip>
+                                            <Image Stretch="Uniform" Width="100" Source="{Binding image}" Margin="0,0,0,30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            <TextBlock Width="100" Text="{Binding name}" VerticalAlignment="Bottom" Height="30"/>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </xe:DropDownButton.DropDownContent>
+        </xe:DropDownButton>
+</Grid>
 </UserControl>

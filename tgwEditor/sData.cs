@@ -75,10 +75,13 @@ namespace tgwEditor
             characters = new XmlDBController<CharacterData>(CharacterFilePath, CharacterData.XElementName);
             global = new XmlDBController<KeyValDataPair>(GlobalFilePath, KeyValDataPair.XElementName);
 
-            DispatcherTimer autoSaveTimer = new DispatcherTimer();
-            autoSaveTimer.Interval = TimeSpan.FromMinutes(1);
-            autoSaveTimer.Tick += autoSaveTimer_Tick;
-            autoSaveTimer.Start();
+            if (AppSettings.AutosaveEnabled)
+            {
+                DispatcherTimer autoSaveTimer = new DispatcherTimer();
+                autoSaveTimer.Interval = TimeSpan.FromMinutes(1);
+                autoSaveTimer.Tick += autoSaveTimer_Tick;
+                autoSaveTimer.Start();
+            }
 
             CHAR_EDITOR_INIT();
         }
@@ -495,12 +498,18 @@ namespace tgwEditor
 
         public object parent = null;
 
-
+        private string _key = null, _val = null;
         public string Key
         {
-            get { return source.Attribute("key").Value.ToString(); }
+            get
+            {
+                if (_key == null)
+                    _key = source.Attribute("key").Value.ToString();
+                return _key;
+            }
             set
             {
+                _key = value;
                 source.Attribute("key").Value = value;
                 if (ValueChanged_Event != null)
                 {
@@ -512,11 +521,17 @@ namespace tgwEditor
         public event EventHandler ValueChanged_Event;
         public string Val
         {
-            get { return source.Attribute("val").Value.ToString(); }
+            get
+            {
+                if (_val == null)
+                    _val = source.Attribute("val").Value.ToString();
+                return _val;
+            }
             set
             {
                 if (value != null)
                 {
+                    _val = value;
                     source.Attribute("val").Value = value;
                     if (ValueChanged_Event != null)
                     {
@@ -594,7 +609,7 @@ namespace tgwEditor
             }
         }
 
-        string _ID = "";
+        string _ID = "", _text = null;
         public override string ID
         {
             get
@@ -613,9 +628,15 @@ namespace tgwEditor
 
         public string Text
         {
-            get { return source.Attribute("text").Value.ToString(); }
+            get
+            {
+                if (_text == null)
+                    _text = source.Attribute("text").Value.ToString();
+                return _text;
+            }
             set
             {
+                _text = value;
                 source.Attribute("text").Value = value;
                 NotifyPropertyChanged();
             }

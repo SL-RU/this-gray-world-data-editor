@@ -64,7 +64,7 @@ namespace tgwEditor.CharEditor
                 catch
                 {
                     DispatcherTimer ds = new DispatcherTimer();
-                    ds.Interval = TimeSpan.FromMilliseconds(50);
+                    ds.Interval = TimeSpan.FromMilliseconds(200);
                     ds.Tick += ds_Tick;
 
                     ds.Start();
@@ -72,6 +72,14 @@ namespace tgwEditor.CharEditor
                 spec.ItemsSource = source.spec;
                 kn.ItemsSource = source.kn;
                 behEditor.setChar(source);
+
+                appearance.DataContext = source;
+                appearance.Items.Clear();
+                foreach (var i in sData.APPEARANCE_TEMPLATE[source.Type].Keys)
+                {
+                    appearance.Items.Add(new CharacterAppearnceElement(source, i));
+                }
+
 
                 inventoryEditor.SetCollection(cd.inventory);
 
@@ -180,7 +188,7 @@ namespace tgwEditor.CharEditor
             l.AutoHideMinWidth = l.FloatingWidth = w.MinWidth;
             l.CanClose = false;
             l.CanFloat = false;
-            
+
 
             return l;
         }

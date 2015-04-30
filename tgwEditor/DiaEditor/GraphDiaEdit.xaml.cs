@@ -184,6 +184,39 @@ namespace tgwEditor.DiaEditor
             DataGrid.Children.Remove(e);
             allPrjElements.Remove(e);
         }
+
+        /// <summary>
+        /// Export texts vars from scripts with varKey name
+        /// </summary>
+        /// <param name="varName"></param>
+        public void ExportTextFromProject(string varKey)
+        {
+            string s = "Project: " + ProjectName + "\n\n";
+            int id = 0;
+            foreach (var v in allPrjElements)
+            {
+                if (v is DiaItem)
+                {
+                    var vv = (v as DiaItem).source.vars.Where(x => x.Key == varKey);
+                    if (vv.Count() > 0)
+                    {
+                        var vvv = vv.Where(x => sData.texts.Get(x.Val) != null);
+                        if (vvv.Count() > 0)
+                        {
+                            var kp = vvv.First();
+                            if (kp != null)
+                            {
+                                id++;
+                                s += "-- " + id.ToString() + "\n" + sData.texts.Get(kp.Val).Text + "\n";
+                            }
+                        }
+                    }
+                }
+            }
+            Clipboard.SetText(s);
+            sData.LOG("Project's text exported to clipboard buffer! Done.");
+
+        }
         #endregion
 
 
@@ -500,6 +533,11 @@ namespace tgwEditor.DiaEditor
         }
         #endregion
 
+        private void export_click(object sender, RoutedEventArgs e)
+        {
+            ExportTextFromProject("txt");
+        }
+
 
 
 
@@ -566,10 +604,10 @@ namespace tgwEditor.DiaEditor
             Delete();
         }
 
-        int updateCount = 1000;
+        int updateCount = 100;
         void line_LayoutUpdated(object sender, EventArgs e)
         {
-            if (updateCount >= 7)
+            if (updateCount >= 20)
             {
                 UpdatePos();
                 updateCount = 0;

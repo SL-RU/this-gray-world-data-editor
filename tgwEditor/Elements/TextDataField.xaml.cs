@@ -24,7 +24,7 @@ namespace tgwEditor.Elements
         public TextData Text;
         public KeyValDataPair Link;
 
-        public TextDocument doc;
+        //public TextDocument doc;
 
         public TextDataField(KeyValDataPair link)
         {
@@ -49,9 +49,9 @@ namespace tgwEditor.Elements
                 main.DataContext = Text;
                 newIDTextBox.Text = Link.Val;
 
-                doc = new TextDocument();
-                doc.Text = Text.Text;
-                textBox.Document = doc;
+                //doc = new TextDocument();
+                //doc.Text = Text.Text;
+                textBox.Text = Text.Text;
 
                 idLable.Text = Text.ID;
 
@@ -63,8 +63,7 @@ namespace tgwEditor.Elements
             else
             {
                 DataContext = null;
-                if (doc != null)
-                    doc.Text = "WARNING!!! Null binding!!!";
+                textBox.Text = "WARNING!!! Null binding!!!";
             }
 
 
@@ -72,8 +71,7 @@ namespace tgwEditor.Elements
 
         void Text_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (doc.Text != Text.Text)
-                doc.Text = Text.Text;
+            textBox.Text = Text.Text;
             lbl.Text = Text.Sound;
         }
 
@@ -128,7 +126,7 @@ namespace tgwEditor.Elements
 
         private void textBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            Text.Text = doc.Text;
+            Text.Text = textBox.Text;
         }
 
         private void moreSettingsButton_MouseMove(object sender, MouseEventArgs e)
@@ -178,6 +176,7 @@ namespace tgwEditor.Elements
         {
             AudioViewWindow.instance.mp.Stop();
         }
+
 
 
 

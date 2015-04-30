@@ -43,6 +43,7 @@ namespace tgwEditor
                 watcher.Deleted += watcher_Deleted;
                 watcher.Renamed += watcher_Renamed;
                 watcher.EnableRaisingEvents = true;
+                watcher.IncludeSubdirectories = true;
             }
             InitializeComponent();
             Init();
@@ -114,33 +115,34 @@ namespace tgwEditor
 
         public void Rescan()
         {
-            if (Directory.Exists(sData.path + "imges\\"))
-            {
-                watcher.EnableRaisingEvents = false;
-                imges.Clear();
-                var v = (Directory.EnumerateFiles(sData.path + "imges"));
-
-                if (v.Where(x => x.EndsWith(".png") || x.EndsWith(".jpg")).Count() > 0) //hide tip
-                    drop_tip.Visibility = System.Windows.Visibility.Collapsed;
-                else
-                    drop_tip.Visibility = System.Windows.Visibility.Visible;
-
-
-                foreach (var i in v)
+            if (Directory.Exists(sData.path))
+                if (Directory.Exists(sData.path + "imges\\"))
                 {
-                    if (i.EndsWith(".png") || i.EndsWith(".jpg"))
+                    watcher.EnableRaisingEvents = false;
+                    imges.Clear();
+                    var v = (Directory.EnumerateFiles(sData.path + "imges", "*", SearchOption.AllDirectories));
+
+                    if (v.Where(x => x.EndsWith(".png") || x.EndsWith(".jpg")).Count() > 0) //hide tip
+                        drop_tip.Visibility = System.Windows.Visibility.Collapsed;
+                    else
+                        drop_tip.Visibility = System.Windows.Visibility.Visible;
+
+
+                    foreach (var i in v)
                     {
-                        var data = GetImageData(i.Remove(0, (sData.path + "imges\\").Length));
-                        if (data == null)
+                        if (i.EndsWith(".png") || i.EndsWith(".jpg"))
                         {
-                            data = FileBinding.New(i, (sData.path + "imges\\"), FileBinding.IMG_TYPE);
-                            DB_source.Root.Add(data.source);
+                            var data = GetImageData(i.Remove(0, (sData.path + "imges\\").Length));
+                            if (data == null)
+                            {
+                                data = FileBinding.New(i, (sData.path + "imges\\"), FileBinding.IMG_TYPE);
+                                DB_source.Root.Add(data.source);
+                            }
+                            imges.Add(data);
                         }
-                        imges.Add(data);
                     }
+                    watcher.EnableRaisingEvents = true;
                 }
-                watcher.EnableRaisingEvents = true;
-            }
         }
 
         public void Loading()

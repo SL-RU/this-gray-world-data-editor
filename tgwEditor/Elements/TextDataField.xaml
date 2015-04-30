@@ -10,7 +10,8 @@
 
     <DockPanel>
         <Grid x:Name="main" DockPanel.Dock="Top">
-            <av:TextEditor x:Name="textBox" Margin="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" FontSize="16" BorderThickness="0" WordWrap="True" LostFocus="textBox_LostFocus" Foreground="White"/>
+            <TextBox x:Name="textBox" Margin="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" FontSize="16" BorderThickness="0" LostFocus="textBox_LostFocus" Foreground="White" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True" VerticalContentAlignment="Stretch" SnapsToDevicePixels="False"/>
+            <!--<Rectangle x:Name="stateInfo" Fill="#000000FF" Height="1" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>-->
             <Button x:Name="moreSettingsButton" Content="more" Margin="0,-6,5,0" VerticalAlignment="Top" FontSize="14" FontWeight="Thin" FontFamily="Segoe UI Semibold" Height="25" BorderThickness="0" VerticalContentAlignment="Top" Padding="0" HorizontalContentAlignment="Right" Click="Button_Click" Style="{DynamicResource LinkButton}" Foreground="#7200FF75" Background="#FF323232" MouseMove="moreSettingsButton_MouseMove" MouseLeave="moreSettingsButton_MouseLeave" HorizontalAlignment="Right" />
         </Grid>
 

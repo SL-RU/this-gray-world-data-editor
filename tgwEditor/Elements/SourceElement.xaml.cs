@@ -28,39 +28,22 @@ namespace tgwEditor.Elements
             kvData = src;
             window = wnd;
 
-            if(src.Key != "")
+            if(src.Val != "" && src.Val != "-1")
             {
-                timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromMilliseconds(200);
-                timer.Tick += dt_Tick;
-                timer.Start();
+                update = true;
             }
-        }
 
-        DispatcherTimer timer;
+        }
 
         public delegate void Connected(string id);
         public event Connected ConnectedEvent;
 
 
 
-        void dt_Tick(object sender, EventArgs e)
-        {
-            if (kvData != null)
-            {
-                var di = window.getExistingScript(kvData.Val);
-                if (di != null)
-                {
-                    ITargetAnswer(di.tAnch, true);
-                    (sender as DispatcherTimer).Stop();
-                }
-            }
-        }
-
         public void ConnectTo(string id)
         {
             kvData.Val = id;
-            timer.Start();
+            update = true;
         }
 
         public GraphDiaEdit window;
@@ -175,6 +158,23 @@ namespace tgwEditor.Elements
                         mainEl.Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 0));
                         IFindConnection = true;
                         connecting = true;
+                    }
+                }
+            }
+        }
+
+        private bool update = true;
+        private void UserControl_LayoutUpdated(object sender, EventArgs e)
+        {
+            if (update)
+            {
+                if (kvData != null)
+                {
+                    var di = window.getExistingScript(kvData.Val);
+                    if (di != null)
+                    {
+                        ITargetAnswer(di.tAnch, true);
+                        update = false;
                     }
                 }
             }
