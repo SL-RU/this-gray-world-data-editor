@@ -58,6 +58,14 @@
                 <MenuItem Header="View">
                     <MenuItem Header="Open character editor window" Click="OpenCharEditorWindow"/>
                 </MenuItem>
+
+                <MenuItem Header="Version control">
+                    <MenuItem Header="Init" Click="gitInit"/>
+                    <MenuItem Header="Clone" Click="gitClone"/>
+                    <MenuItem Header="Pull" Click="gitPull"/>
+                    <MenuItem Header="Commit" Click="gitCommit"/>
+                    <MenuItem Header="Push" Click="gitPush"/>
+                </MenuItem>
             </Menu>
             <metro:ProgressRing x:Name="logProcessingBar" Height="30" Width="30" HorizontalAlignment="Right"/>
             <TextBlock x:Name="logPreviewBox" HorizontalAlignment="Right" Margin="0,0,35,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" FontSize="18"/>
