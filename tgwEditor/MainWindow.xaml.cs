@@ -21,6 +21,7 @@ using tgwEditor.scripts;
 using Xceed.Wpf.AvalonDock.Layout;
 using MahApps.Metro.Controls;
 using tgwEditor.Elements;
+//using libgit2sharp;
 
 namespace tgwEditor
 {
@@ -163,9 +164,9 @@ namespace tgwEditor
                     {
                         l.Saving();
                     }
-                    catch
+                    catch(Exception ex)
                     {
-
+                        throw new Exception("Exception when saving", ex);
                     }
                 }
             }
@@ -180,9 +181,9 @@ namespace tgwEditor
                     {
                         l.Loading();
                     }
-                    catch
+                    catch(Exception ex)
                     {
-
+                        throw new Exception("Exception when loading", ex);
                     }
                 }
             }
@@ -254,7 +255,7 @@ namespace tgwEditor
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBox.Show("Do you save all data?\nMenu -> DATA -> Save ALL data \nDo you want QUIT???", "DO YOU WANT QUIT???", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            if (MessageBox.Show("Did you save all the data?\nMenu -> DATA -> Save ALL data \nDo you want to quit?", "Exit confirmation", MessageBoxButton.YesNo) == MessageBoxResult.No)
             {
                 e.Cancel = true;
             }
@@ -266,7 +267,64 @@ namespace tgwEditor
 
         private void OpenCharEditorWindow(object sender, RoutedEventArgs e)
         {
-            CharacterEditor.CreateNewWindow();
+            //
+        }
+
+        private void gitInit(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+        #region git clone
+        private void gitClone(object sender, RoutedEventArgs e)
+        {
+           /* String WayToLocalRepoFolder;
+            String PathToRemoteRepo;
+            bool LocalFolderChosen;
+
+            Credentials credentials = new UsernamePasswordCredentials()
+            {
+                Username = "username",
+                Password = "password"
+            };
+
+            // PathToRemoteRepo = InputPath.Text;
+			if (LocalFolderChosen == true){
+					if (PathToRemoteRepo != "")
+					{
+						try
+						{
+							Repository.Clone(PathToRemoteRepo, WayToLocalRepoFolder);
+							_console.Add("Repository cloned successfully!");
+							UpdateListBox();
+						}
+						catch (Exception exc)
+						{
+							MessageBox.Show("Sorry, could not clone remote repository: " + exc.Message);
+						}
+					}
+					else MessageBox.Show("Please write path to remote repo first");
+			} 
+			else 
+			{
+				MessageBox.Show("Please choose local repository folder first");
+			}*/
+        }
+        #endregion
+
+        private void gitPull(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+        private void gitCommit(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+        private void gitPush(object sender, RoutedEventArgs e)
+        {
+            //
         }
 
         private void OpenProjectFolderInExplorer_Click(object sender, RoutedEventArgs e)
